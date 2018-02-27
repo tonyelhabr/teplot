@@ -35,19 +35,6 @@ te_colors <-
     `lightgrey` = "#CCCCCC",
     `darkgrey` = "#8C8C8C"
   )
-# te_colors <-
-#   c(
-#     "#B22222",
-#     "#7FFF00",
-#     "#4169E1",
-#     "#FF8C00",
-#     "#8B008B",
-#     "#FFD700",
-#     "#FF69B4",
-#     "#00BFFF",
-#     "#CCCCCC",
-#     "#8C8C8C"
-#   )
 # scales::show_col(te_colors)
 # devtools::use_data(te_colors, internal = FALSE, overwrite = TRUE)
 
@@ -64,12 +51,8 @@ te_cols <- function(...) {
 }
 
 te_palettes <- list(
-  `main` = te_cols(),
-  `cool` = te_cols("purple", "yellow"),
-  `hot` = te_cols("yellow", "orange", "red")
-  # `main` = te_colors,
-  # `cool` = te_colors[4:5],
-  # `hot` = te_colors[c(6:1)]
+  `discrete` = te_cols(),
+  `continuous` = te_cols("purple", "yellow")
 )
 
 #' Return function to interpolate a te_color palette
@@ -82,12 +65,15 @@ te_palettes <- list(
 #' @param reverse logical. Indicates whether the palette should be reversed.
 #' @source \url{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}.
 #' \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}
-te_pal <- function(palette = "main",
+te_pal <- function(palette = "discrete",
                    discrete = TRUE,
                    reverse = FALSE) {
-  if(discrete & palette != "main") {
+  if((discrete) & (palette != "discrete")) {
     discrete <- FALSE
     message("Setting `discrete = FALSE`.")
+  } else if ((!discrete) & (palette == "discrete")) {
+    discrete <- TRUE
+    message("Setting `discrete = TRUE`.")
   }
 
   pal <- te_palettes[[palette]]
@@ -102,6 +88,7 @@ te_pal <- function(palette = "main",
   } else {
     grDevices::colorRampPalette(pal)
   }
+  # grDevices::colorRampPalette(pal)
 }
 
 #' Color scale constructor for te_colors
@@ -116,7 +103,7 @@ te_pal <- function(palette = "main",
 #' \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}
 #' @export
 scale_color_te <-
-  function(palette = "main",
+  function(palette = "discrete",
            discrete = TRUE,
            reverse = FALSE,
            ...) {
@@ -139,7 +126,7 @@ scale_color_te <-
 #' \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}
 #' @export
 scale_fill_te <-
-  function(palette = "main",
+  function(palette = "discrete",
            discrete = TRUE,
            reverse = FALSE,
            ...) {

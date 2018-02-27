@@ -8,7 +8,8 @@
 \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}
 }
 \usage{
-scale_color_te(palette = "main", discrete = TRUE, reverse = FALSE, ...)
+scale_color_te(palette = "discrete", discrete = TRUE, reverse = FALSE,
+  ...)
 }
 \arguments{
 \item{palette}{character. Name of palette in \code{te_palettes} list.}
