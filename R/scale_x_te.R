@@ -67,6 +67,9 @@ te_palettes <- list(
   `main` = te_cols(),
   `cool` = te_cols("purple", "yellow"),
   `hot` = te_cols("yellow", "orange", "red")
+  # `main` = te_colors,
+  # `cool` = te_colors[4:5],
+  # `hot` = te_colors[c(6:1)]
 )
 
 #' Return function to interpolate a te_color palette
@@ -77,16 +80,19 @@ te_palettes <- list(
 #' @param palette character. Name of palette in \code{te_palettes} list.
 #' @param discrete logical. Indicates whether the color palette is discrete or not.
 #' @param reverse logical. Indicates whether the palette should be reversed.
-#' @param ... dots. Additional parameters passed to \code{colorRampPalette()} if
-#' \code{discrete = FALSE}.
 #' @source \url{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}.
 #' \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}
 te_pal <- function(palette = "main",
                    discrete = TRUE,
-                   reverse = FALSE,
-                   ...) {
+                   reverse = FALSE) {
+  if(discrete & palette != "main") {
+    discrete <- FALSE
+    message("Setting `discrete = FALSE`.")
+  }
+
   pal <- te_palettes[[palette]]
 
+  pal <- unname(pal)
   if (reverse)
     pal <- rev(pal)
 
@@ -94,7 +100,7 @@ te_pal <- function(palette = "main",
   if(discrete) {
     scales::manual_pal(pal)
   } else {
-    grDevices::colorRampPalette(pal, ...)
+    grDevices::colorRampPalette(pal)
   }
 }
 
@@ -137,7 +143,7 @@ scale_fill_te <-
            discrete = TRUE,
            reverse = FALSE,
            ...) {
-    pal <- te_pal(palette = palette, reverse = reverse)
+    pal <- te_pal(palette = palette, discrete = discrete, reverse = reverse)
 
     if (discrete) {
       ggplot2::discrete_scale("fill", paste0("te_", palette), palette = pal, ...)

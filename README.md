@@ -21,14 +21,17 @@ Examples
 
 ``` r
 library("ggplot2")
+library("datasets")
 
 viz_labs <-
-    labs(title = "A Title.",
-       subtitle = "A subtitle.",
-       caption = "A caption.")
+  labs(
+    title = "A Title.",
+    subtitle = "A subtitle.",
+    caption = "A caption."
+  )
 
 viz_cars <-
-  ggplot(mtcars, aes(x = wt, y = mpg, color = factor(gear))) +
+  ggplot(data = mtcars, aes(x = wt, y = mpg, color = factor(gear))) +
   geom_point(size = 2) +
   geom_smooth(method = "lm", se = FALSE, size = 2) +
   teplot::scale_color_te() +
@@ -39,11 +42,17 @@ viz_cars_facet <-
   facet_wrap(~ am, scales = "free")
 
 viz_diamonds <-
-  ggplot(diamonds, aes(x = clarity, fill = cut)) +
+  ggplot(data = diamonds, aes(x = clarity, fill = color)) +
   geom_bar() +
   # scale_fill_manual(values = scales::hue_pal()(5)) +
   teplot::scale_fill_te() +
   viz_labs
+
+viz_iris <-
+  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, fill = Petal.Length)) +
+  geom_tile() +
+  teplot::scale_fill_te(palette = "cool", discrete = FALSE) +
+  teplot::theme_te_a()
 
 viz_diamonds_facet <-
   viz_diamonds +

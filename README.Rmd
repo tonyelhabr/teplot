@@ -79,10 +79,11 @@ viz_labs <-
   )
 
 viz_cars <-
-  ggplot(data = imtcars, aes(x = wt, y = mpg, color = factor(gear))) +
+  ggplot(data = mtcars, aes(x = wt, y = mpg, color = factor(gear))) +
   geom_point(size = 2) +
   geom_smooth(method = "lm", se = FALSE, size = 2) +
   teplot::scale_color_te() +
+  # scale_color_manual(values = unname(teplot::te_colors)) +
   viz_labs
 
 viz_cars_facet <-
@@ -90,7 +91,7 @@ viz_cars_facet <-
   facet_wrap(~ am, scales = "free")
 
 viz_diamonds <-
-  ggplot(data = idiamonds, aes(x = clarity, fill = color)) +
+  ggplot(data = diamonds, aes(x = clarity, fill = color)) +
   geom_bar() +
   # scale_fill_manual(values = scales::hue_pal()(5)) +
   teplot::scale_fill_te() +
