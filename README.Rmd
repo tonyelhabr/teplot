@@ -64,7 +64,7 @@ Here is a list of all functions in the package.
 ## Examples
 
 ```{r echo = FALSE}
-# library("teplot")
+library("teplot")
 ```
 
 ```{r }

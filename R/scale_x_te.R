@@ -51,20 +51,9 @@ te_cols <- function(...) {
 }
 
 te_palettes <- list(
-  `main` = te_cols(
-    "red",
-    "green",
-    "blue",
-    "orange",
-    "purple",
-    "yellow",
-    "pin",
-    "turquose",
-    "lightgrey",
-    "darkgrey"
-  ),
-  `cool`  = te_cols("blue", "green"),
-  `hot`   = te_cols("yellow", "orange", "red")
+  `main` = te_cols(),
+  `cool` = te_cols("blue", "green"),
+  `hot` = te_cols("yellow", "orange", "red")
 )
 
 #' Return function to interpolate a te_color palette
@@ -82,6 +71,7 @@ te_pal <- function(palette = "main",
   if (reverse)
     pal <- rev(pal)
 
+  names(pal) <- NULL
   grDevices::colorRampPalette(pal, ...)
 }
 
