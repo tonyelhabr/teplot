@@ -1,0 +1,68 @@
+---
+output: github_document
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  comment = "#>",
+  # cache.path = "man/README",
+  fig.path = "man/README/README-"
+)
+```
+
+```{r eval = FALSE, echo = FALSE}
+viz_void <- ggplot2::ggplot() + ggplot2::theme_void()
+
+dir_logo <- file.path("man", "figures")
+if(!exists(dir_logo)) {
+  dir.create(dir_logo, recursive = TRUE)
+}
+filepath_logo <- file.path("man", "figures", paste0("logo.png"))
+hexSticker::sticker(
+  subplot = viz_void,
+  package = "teplot",
+  filename = file.path("man", "figures", paste0("logo.png")),
+  p_y = 1.0,
+  p_color = "black",
+  # p_family = "sans",
+  p_size = 40,
+  h_size = 1.5,
+  h_color = "black",
+  h_fill = "yellow"
+)
+logo <- magick::image_read(filepath_logo)
+magick::image_write(magick::image_scale(logo, "120"), path = filepath_logo)
+```
+
+# temisc <img src="man/figures/logo.png" align="right"/>
+
+##  Introduction
+
+This package containts functions that I often use.
+
+### Installation
+
+`devtools::install_github("tonyelhabr/teplot")`.
+
+## Notes
+
+Here is a list of all functions in the package.
+
+```{r echo = FALSE}
+# library("teplot")
+# ls("package:teplot")
+```
+
+```{r include = FALSE}
+# sprintf("Code coverage: %f", covr::package_coverage())
+```
+
+
+## Examples
+
+```{r echo = FALSE}
+# library("teplot")
+```

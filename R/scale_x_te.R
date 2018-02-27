@@ -1,0 +1,87 @@
+
+
+
+#' Extract hex values from te_colors
+#'
+#' @param ... dots. Names of \code{te_colors} to subset.
+te_cols <- function(...) {
+  nms <- c(...)
+
+  if (is.null(nms))
+    return (te_colors)
+
+  te_colors[nms]
+}
+
+te_palettes <- list(
+  `main` = te_cols(),
+  `cool`  = te_cols("blue", "green"),
+  `hot`   = te_cols("yellow", "orange", "red")
+)
+
+#' Return function to interpolate a te_color palette
+#'
+#' @param palette character. Name of palette in \code{te_palettes} list.
+#' @param reverse logical. Indicates whether the palette should be reversed.
+#' @param ... dots. Additional parameters passed to \code{colorRampPalette()}
+#' @source \url{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}.
+#' \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}
+te_pal <- function(palette = "main",
+                   reverse = FALSE,
+                   ...) {
+  pal <- te_palettes[[palette]]
+
+  if (reverse)
+    pal <- rev(pal)
+
+  colorRampPalette(pal, ...)
+}
+
+#' Color scale constructor for te_colors
+#'
+#' @description Color function for use with \code{ggplot2}.
+#' @details None.
+#' @inheritParams te_pal
+#' @param discrete logical. Indicates whether the color palette is discrete or not
+#' @param ... dots. Additional arameters passed to \code{ggplot2::discrete_scale()} if
+#' \code{discrete = TRUE} or
+#' \code{ggplot2::scale_fill_gradientn()} if \code{discrete = FALSE}.
+#' @source \url{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}.
+#' \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}
+#' @export
+scale_color_te <-
+  function(palette = "main",
+           discrete = TRUE,
+           reverse = FALSE,
+           ...) {
+    pal <- te_pal(palette = palette, reverse = reverse)
+
+    if (discrete) {
+      ggplot2::discrete_scale("colour", paste0("te_", palette), palette = pal, ...)
+    } else {
+      ggplot2::scale_color_gradientn(colours = pal(256), ...)
+    }
+  }
+
+
+#' Fill scale constructor for te_colors
+#'
+#' @description Color function for use with \code{ggplot2}.
+#' @details None.
+#' @inheritParams scale_color_te
+#' @source \url{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}.
+#' \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}
+#' @export
+scale_fill_te <-
+  function(palette = "main",
+           discrete = TRUE,
+           reverse = FALSE,
+           ...) {
+    pal <- te_pal(palette = palette, reverse = reverse)
+
+    if (discrete) {
+      ggplot2::discrete_scale("fill", paste0("te_", palette), palette = pal, ...)
+    } else {
+      ggplot2::scale_fill_gradientn(colours = pal(256), ...)
+    }
+  }
