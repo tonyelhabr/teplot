@@ -37,7 +37,7 @@ logo <- magick::image_read(filepath_logo)
 magick::image_write(magick::image_scale(logo, "120"), path = filepath_logo)
 ```
 
-# temisc <img src="man/figures/logo.png" align="right"/>
+# tetext <img src="man/figures/logo.png" align="right"/>
 
 ##  Introduction
 
@@ -65,4 +65,54 @@ Here is a list of all functions in the package.
 
 ```{r echo = FALSE}
 # library("teplot")
+```
+
+```{r }
+library("ggplot2")
+
+viz_labs <-
+    labs(title = "A Title.",
+       subtitle = "A subtitle.",
+       caption = "A caption.")
+
+viz_cars <-
+  ggplot(mtcars, aes(x = wt, y = mpg, color = factor(gear))) +
+  geom_point(size = 2) +
+  geom_smooth(method = "lm", se = FALSE, size = 2) +
+  teplot::scale_color_te() +
+  viz_labs
+
+viz_cars_facet <-
+  viz_cars +
+  facet_wrap(~ am, scales = "free")
+
+viz_diamonds <-
+  ggplot(diamonds, aes(x = clarity, fill = cut)) +
+  geom_bar() +
+  # scale_fill_manual(values = scales::hue_pal()(5)) +
+  teplot::scale_fill_te() +
+  viz_labs
+
+viz_diamonds_facet <-
+  viz_diamonds +
+  facet_wrap(~ cut, scales = "free")
+
+# viz_iris <-
+#   ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
+#   geom_col() +
+#   viz_labs
+
+# viz_cars + theme_grey()
+viz_cars + theme_te()
+# viz_cars + theme_te(option = "b")
+
+# viz_cars_facet + theme_grey()
+viz_cars_facet + theme_te_facet()
+# viz_cars_facet + theme_te_facet(option = "b")
+
+# viz_diamonds + theme_grey()
+viz_diamonds + theme_te_dx()
+
+# viz_diamonds_facet + theme_grey()
+viz_diamonds_facet + theme_te_facet_dx()
 ```

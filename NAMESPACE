@@ -2,6 +2,7 @@
 
 export(scale_color_te)
 export(scale_fill_te)
+export(te_colors)
 export(theme_te)
 export(theme_te_a)
 export(theme_te_a_dx)

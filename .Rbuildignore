@@ -1,4 +1,11 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.yml$
+^.*\.yml$
 ^README\.Rmd$
 ^README-.*\.png$
+^README.*
+Thumbs.db
+^\.travis\.yml$
+^codecov\.yml$
+^data-raw$

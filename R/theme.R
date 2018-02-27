@@ -101,7 +101,7 @@ theme_te_b <- function (base_family = "Arial Narrow",
                         axis_title_size = 9,
                         axis_title_face = "plain",
                         axis_title_just = "rt",
-                        plot_margin = margin(5, 5, 5, 5),
+                        plot_margin = ggplot2::margin(5, 5, 5, 5),
                         ...) {
   out <-
     ggplot2::theme_minimal(base_family = base_family, base_size = base_size)
@@ -110,22 +110,48 @@ theme_te_b <- function (base_family = "Arial Narrow",
                    legend.title = ggplot2::element_blank())
 
   # Heavily copied from here on.
-  xj <- switch(tolower(substr(axis_title_just, 1, 1)), b=0, l=0, m=0.5, c=0.5, r=1, t=1)
-  yj <- switch(tolower(substr(axis_title_just, 2, 2)), b=0, l=0, m=0.5, c=0.5, r=1, t=1)
+  xj <-
+    switch(
+      tolower(substr(axis_title_just, 1, 1)),
+      b = 0,
+      l = 0,
+      m = 0.5,
+      c = 0.5,
+      r = 1,
+      t = 1
+    )
+  yj <-
+    switch(
+      tolower(substr(axis_title_just, 2, 2)),
+      b = 0,
+      l = 0,
+      m = 0.5,
+      c = 0.5,
+      r = 1,
+      t = 1
+    )
 
   out <-
     out + ggplot2::theme(
-      axis.text.x = ggplot2::element_text(size = axis_text_size, margin =
-                                            ggplot2::margin(t = 0))
+      axis.text.x = ggplot2::element_text(
+        size = axis_text_size, margin =
+          ggplot2::margin(t = 0)
+      )
     )
   out <-
     out + ggplot2::theme(
-      axis.text.y = ggplot2::element_text(size = axis_text_size, margin =
-                                            ggplot2::margin(r = 0))
+      axis.text.y = ggplot2::element_text(
+        size = axis_text_size,
+        margin = ggplot2::margin(r = 0)
+      )
     )
   out <-
-    out + ggplot2::theme(axis.title = ggplot2::element_text(size = axis_title_size, family =
-                                                              axis_title_family))
+    out + ggplot2::theme(
+      axis.title = ggplot2::element_text(
+        size = axis_title_size, family =
+          axis_title_family
+      )
+    )
   out <-
     out + ggplot2::theme(
       axis.title.x = ggplot2::element_text(

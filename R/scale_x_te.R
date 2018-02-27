@@ -1,5 +1,42 @@
 
+#' Custom colors
+#'
+#' @description colors
+#' @details These were hand-picked, keeping in mind 'oppositional' colors
+#' (i.e. red and green, blue and orange, purple and yellow, etc.)
+#' @format character (vector). Named.
+#' @export
+"te_colors"
 
+# te_colors <-
+#   c(
+#     `firebrick` = "#B22222",
+#     `chartreuse` = "#7FFF00",
+#     `royalblue` = "#4169E1",
+#     `darkorange` = "#FF8C00",
+#     `darkmagenta` = "#8B008B",
+#     `gold` = "#FFD700",
+#     `hotpink` = "#FF69B4",
+#     `deepskyblue` = "#00BFFF",
+#     `lightgrey` = "#CCCCCC",
+#     `darkgrey` = "#8C8C8C"
+#   )
+
+te_colors <-
+  c(
+    `red` = "#B22222",
+    `green` = "#7FFF00",
+    `blue` = "#4169E1",
+    `orange` = "#FF8C00",
+    `purple` = "#8B008B",
+    `yellow` = "#FFD700",
+    `pink` = "#FF69B4",
+    `turquoise` = "#00BFFF",
+    `lightgrey` = "#CCCCCC",
+    `darkgrey` = "#8C8C8C"
+  )
+# scales::show_col(te_colors)
+# devtools::use_data(te_colors, internal = FALSE, overwrite = TRUE)
 
 #' Extract hex values from te_colors
 #'
@@ -14,7 +51,18 @@ te_cols <- function(...) {
 }
 
 te_palettes <- list(
-  `main` = te_cols(),
+  `main` = te_cols(
+    "red",
+    "green",
+    "blue",
+    "orange",
+    "purple",
+    "yellow",
+    "pin",
+    "turquose",
+    "lightgrey",
+    "darkgrey"
+  ),
   `cool`  = te_cols("blue", "green"),
   `hot`   = te_cols("yellow", "orange", "red")
 )
@@ -34,7 +82,7 @@ te_pal <- function(palette = "main",
   if (reverse)
     pal <- rev(pal)
 
-  colorRampPalette(pal, ...)
+  grDevices::colorRampPalette(pal, ...)
 }
 
 #' Color scale constructor for te_colors
