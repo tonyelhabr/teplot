@@ -35,6 +35,19 @@ te_colors <-
     `lightgrey` = "#CCCCCC",
     `darkgrey` = "#8C8C8C"
   )
+# te_colors <-
+#   c(
+#     "#B22222",
+#     "#7FFF00",
+#     "#4169E1",
+#     "#FF8C00",
+#     "#8B008B",
+#     "#FFD700",
+#     "#FF69B4",
+#     "#00BFFF",
+#     "#CCCCCC",
+#     "#8C8C8C"
+#   )
 # scales::show_col(te_colors)
 # devtools::use_data(te_colors, internal = FALSE, overwrite = TRUE)
 
@@ -52,18 +65,24 @@ te_cols <- function(...) {
 
 te_palettes <- list(
   `main` = te_cols(),
-  `cool` = te_cols("blue", "green"),
+  `cool` = te_cols("purple", "yellow"),
   `hot` = te_cols("yellow", "orange", "red")
 )
 
 #' Return function to interpolate a te_color palette
 #'
+#' @description Returns a function to be used by other functionhs.
+#' @details Calls \code{scales::manual_pal()} if \code{discrete = TRUE} or  \code{colorRampPalette()} if
+#' \code{discrete = FALSE}.
 #' @param palette character. Name of palette in \code{te_palettes} list.
+#' @param discrete logical. Indicates whether the color palette is discrete or not.
 #' @param reverse logical. Indicates whether the palette should be reversed.
-#' @param ... dots. Additional parameters passed to \code{colorRampPalette()}
+#' @param ... dots. Additional parameters passed to \code{colorRampPalette()} if
+#' \code{discrete = FALSE}.
 #' @source \url{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}.
 #' \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}
 te_pal <- function(palette = "main",
+                   discrete = TRUE,
                    reverse = FALSE,
                    ...) {
   pal <- te_palettes[[palette]]
@@ -71,8 +90,12 @@ te_pal <- function(palette = "main",
   if (reverse)
     pal <- rev(pal)
 
-  names(pal) <- NULL
-  grDevices::colorRampPalette(pal, ...)
+  # NOTE: For some reason, `colorRampPalette()` is not retuning expected output with discrete scale.
+  if(discrete) {
+    scales::manual_pal(pal)
+  } else {
+    grDevices::colorRampPalette(pal, ...)
+  }
 }
 
 #' Color scale constructor for te_colors
@@ -80,7 +103,6 @@ te_pal <- function(palette = "main",
 #' @description Color function for use with \code{ggplot2}.
 #' @details None.
 #' @inheritParams te_pal
-#' @param discrete logical. Indicates whether the color palette is discrete or not
 #' @param ... dots. Additional arameters passed to \code{ggplot2::discrete_scale()} if
 #' \code{discrete = TRUE} or
 #' \code{ggplot2::scale_fill_gradientn()} if \code{discrete = FALSE}.
@@ -92,7 +114,7 @@ scale_color_te <-
            discrete = TRUE,
            reverse = FALSE,
            ...) {
-    pal <- te_pal(palette = palette, reverse = reverse)
+    pal <- te_pal(palette = palette, discrete = discrete, reverse = reverse)
 
     if (discrete) {
       ggplot2::discrete_scale("colour", paste0("te_", palette), palette = pal, ...)

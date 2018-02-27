@@ -13,7 +13,7 @@ scale_fill_te(palette = "main", discrete = TRUE, reverse = FALSE, ...)
 \arguments{
 \item{palette}{character. Name of palette in \code{te_palettes} list.}
 
-\item{discrete}{logical. Indicates whether the color palette is discrete or not}
+\item{discrete}{logical. Indicates whether the color palette is discrete or not.}
 
 \item{reverse}{logical. Indicates whether the palette should be reversed.}
 

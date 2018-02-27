@@ -8,15 +8,22 @@
 \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}
 }
 \usage{
-te_pal(palette = "main", reverse = FALSE, ...)
+te_pal(palette = "main", discrete = TRUE, reverse = FALSE, ...)
 }
 \arguments{
 \item{palette}{character. Name of palette in \code{te_palettes} list.}
 
+\item{discrete}{logical. Indicates whether the color palette is discrete or not.}
+
 \item{reverse}{logical. Indicates whether the palette should be reversed.}
 
-\item{...}{dots. Additional parameters passed to \code{colorRampPalette()}}
+\item{...}{dots. Additional parameters passed to \code{colorRampPalette()} if
+\code{discrete = FALSE}.}
 }
 \description{
-Return function to interpolate a te_color palette
+Returns a function to be used by other functionhs.
+}
+\details{
+Calls \code{scales::manual_pal()} if \code{discrete = TRUE} or  \code{colorRampPalette()} if
+\code{discrete = FALSE}.
 }
