@@ -57,7 +57,7 @@ te_palettes <- list(
 
 #' Return function to interpolate a te_color palette
 #'
-#' @description Returns a function to be used by other functionhs.
+#' @description Returns a function to be used by other functions.
 #' @details Calls \code{scales::manual_pal()} if \code{discrete = TRUE} or  \code{colorRampPalette()} if
 #' \code{discrete = FALSE}.
 #' @param palette character. Name of palette in \code{te_palettes} list.
