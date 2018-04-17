@@ -24,17 +24,33 @@
 
 te_colors <-
   c(
-    `red` = "#B22222",
-    `green` = "#7FFF00",
     `blue` = "#4169E1",
     `orange` = "#FF8C00",
+    `red` = "#B22222",
+    `green` = "#7FFF00",
     `purple` = "#8B008B",
     `yellow` = "#FFD700",
-    `pink` = "#FF69B4",
     `turquoise` = "#00BFFF",
-    `lightgrey` = "#CCCCCC",
-    `darkgrey` = "#8C8C8C"
+    `pink` = "#FF69B4",
+    `darkgrey` = "#8C8C8C",
+    `lightgrey` = "#CCCCCC"
+
   )
+
+# # https://github.com/clauswilke/dataviz/blob/master/pitfalls_of_color_use.Rmd.
+# # http://jfly.iam.u-tokyo.ac.jp/color/#redundant1
+# te_colors <-
+#   c(
+#     `orange` = "#E69F00",
+#     `skyblue` = "#56B4E9",
+#     `bluishgreen` = "#009E73",
+#     `yellow` = "#F0E442",
+#     `blue`= "#0072B2",
+#     `vermillion` = "#D55E00",
+#     `reddishpurple` = "#CC79A7",
+#     `darkgrey` = "#999999",
+#     `black` = "#000000"
+#   )
 # scales::show_col(te_colors)
 # devtools::use_data(te_colors, internal = FALSE, overwrite = TRUE)
 
@@ -84,11 +100,12 @@ te_pal <- function(palette = "discrete",
 
   # NOTE: For some reason, `colorRampPalette()` is not retuning expected output with discrete scale.
   if(discrete) {
-    scales::manual_pal(pal)
+    ret <- scales::manual_pal(pal)
   } else {
-    grDevices::colorRampPalette(pal)
+    ret <- grDevices::colorRampPalette(pal)
   }
   # grDevices::colorRampPalette(pal)
+  ret
 }
 
 #' Color scale constructor for te_colors
@@ -110,10 +127,11 @@ scale_color_te <-
     pal <- te_pal(palette = palette, discrete = discrete, reverse = reverse)
 
     if (discrete) {
-      ggplot2::discrete_scale("colour", paste0("te_", palette), palette = pal, ...)
+      ret <- ggplot2::discrete_scale("colour", scale_name = palette, palette = pal, ...)
     } else {
-      ggplot2::scale_color_gradientn(colours = pal(256), ...)
+      ret <- ggplot2::scale_color_gradientn(colours = pal(256), ...)
     }
+    ret
   }
 
 
@@ -133,8 +151,9 @@ scale_fill_te <-
     pal <- te_pal(palette = palette, discrete = discrete, reverse = reverse)
 
     if (discrete) {
-      ggplot2::discrete_scale("fill", paste0("te_", palette), palette = pal, ...)
+      ret <- ggplot2::discrete_scale("fill", paste0("te_", palette), palette = pal, ...)
     } else {
-      ggplot2::scale_fill_gradientn(colours = pal(256), ...)
+      ret <- ggplot2::scale_fill_gradientn(colours = pal(256), ...)
     }
+    ret
   }

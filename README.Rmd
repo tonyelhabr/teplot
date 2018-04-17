@@ -53,13 +53,12 @@ Here is a list of all functions in the package.
 
 ```{r echo = FALSE}
 # library("teplot")
-# ls("package:teplot")
+ls("package:teplot")
 ```
 
 ```{r include = FALSE}
 # sprintf("Code coverage: %f", covr::package_coverage())
 ```
-
 
 ## Examples
 
@@ -72,11 +71,9 @@ library("ggplot2")
 library("datasets")
 
 viz_labs <-
-  labs(
-    title = "A Title.",
-    subtitle = "A subtitle.",
-    caption = "A caption."
-  )
+  labs(title = "A Title.",
+       subtitle = "A subtitle.",
+       caption = "A caption.")
 
 viz_cars <-
   ggplot(data = mtcars, aes(x = wt, y = mpg, color = factor(gear))) +
@@ -86,7 +83,7 @@ viz_cars <-
 
 viz_cars_facet <-
   viz_cars +
-  facet_wrap(~ am, scales = "free")
+  facet_wrap( ~ am, scales = "free")
 
 viz_diamonds <-
   ggplot(data = diamonds, aes(x = clarity, fill = color)) +
@@ -94,13 +91,17 @@ viz_diamonds <-
   viz_labs
 
 viz_iris <-
-  ggplot(data = iris, aes(x = ceiling(Sepal.Length), y = ceiling(Sepal.Width), fill = Petal.Length)) +
+  ggplot(data = iris, aes(
+    x = ceiling(Sepal.Length),
+    y = ceiling(Sepal.Width),
+    fill = Petal.Length
+  )) +
   geom_tile() +
   viz_labs
 
 viz_diamonds_facet <-
   viz_diamonds +
-  facet_wrap(~ cut, scales = "free")
+  facet_wrap( ~ cut, scales = "free")
 
 # viz_iris <-
 #   ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
@@ -122,5 +123,5 @@ viz_diamonds + teplot::scale_fill_te() + teplot::theme_te_dx()
 viz_diamonds_facet + teplot::scale_fill_te() + teplot::theme_te_facet_dx()
 
 # viz_diamonds_facet + theme_grey()
-viz_iris + teplot::scale_fill_te(palette = "cool", discrete = FALSE) + teplot::theme_te()
+# viz_iris + teplot::scale_fill_te(palette = "cool", discrete = FALSE) + teplot::theme_te()
 ```
