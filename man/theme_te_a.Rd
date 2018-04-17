@@ -7,8 +7,9 @@
 \alias{theme_te_a_facet_dx}
 \title{Custom theme}
 \usage{
-theme_te_a(base_family = "", base_size = 11, plot_title_size = 16,
-  subtitle_size = 12, ...)
+theme_te_a(base_family = "Arial Narrow", base_size = 12, title.size = 18,
+  title.face = "bold", subtitle.size = 16, subtitle.face = "plain",
+  caption.size = 12, caption.face = "plain", ...)
 
 theme_te_a_dx(...)
 
@@ -19,15 +20,28 @@ theme_te_a_facet_dx(...)
 \arguments{
 \item{base_family}{character.}
 
-\item{base_size, plot_title_size, subtitle_size}{numeric.}
+\item{base_size}{numeric.}
+
+\item{title.size}{numeric.}
+
+\item{title.face}{character.}
+
+\item{subtitle.size}{numeric.}
+
+\item{subtitle.face}{character.}
+
+\item{caption.size}{numeric.}
+
+\item{caption.face}{character.}
 
 \item{...}{dots. Additional parameters passed to \code{ggplot2::theme()}.}
 }
 \description{
-A custom \code{ggplot2} theme.
+A custom \code{ggplot2} theme. Similar to \code{theme_te_b} but makes
+less specific choices about margins.
 }
 \details{
-None.
+Uses \code{ggplot2::theme_minimal()} as basis.
 }
 \seealso{
 \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/theme-ipsum.r}

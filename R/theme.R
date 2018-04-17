@@ -10,231 +10,280 @@
 #' @export
 theme_te <- function(..., option = c("a", "b")) {
   option <- match.arg(option)
-  # out <-
+  # ret <-
   #   switch(option,
   #          `1` = ..
   #   )
   if(option == "a") {
-    out <- theme_te_a(...)
+    ret <- theme_te_a(...)
   } else if (option == "b") {
-    out <- theme_te_b(...)
+    ret <- theme_te_b(...)
   }
-  out
+  ret
 }
 
 #'  Custom theme
 #'
-#' @description A custom \code{ggplot2} theme.
-#' @details None.
-#' @param base_family character.
-#' @param base_size,plot_title_size,subtitle_size numeric.
+#' @description A custom \code{ggplot2} theme. Similar to \code{theme_te_b} but makes
+#' less specific choices about margins.
+#' @details Uses \code{ggplot2::theme_minimal()} as basis.
+#' @inheritParams theme_te_b
 #' @param ... dots. Additional parameters passed to \code{ggplot2::theme()}.
 #' @export
 #' @seealso \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/theme-ipsum.r}
-theme_te_a <- function (base_family = "",
-                      base_size = 11,
-                      plot_title_size = 16,
-                      subtitle_size = 12,
-                      ...) {
-  out <-
+theme_te_a <-
+  function(base_family = "Arial Narrow",
+           base_size = 12,
+           title.size = 18,
+           title.face = "bold",
+           subtitle.size = 16,
+           subtitle.face = "plain",
+           caption.size = 12,
+           caption.face = "plain",
+           ...) {
+  ret <-
     ggplot2::theme_minimal(base_family = base_family, base_size = base_size)
 
-  out <-
-    out +
-    ggplot2::theme(legend.position = "bottom",
-                   legend.title = ggplot2::element_blank())
+  ret <-
+    ret +
+    ggplot2::theme(
+      legend.position = "bottom",
+      legend.title = ggplot2::element_blank()
+    )
 
-  out <-
-    out +
+  ret <-
+    ret +
     ggplot2::theme(
       panel.grid.minor = ggplot2::element_blank()
     )
 
-  out <-
-    out +
+  ret <-
+    ret +
     ggplot2::theme(
-      plot.title = ggplot2::element_text(
-        size = plot_title_size,
-        face = "bold",
+      plot.title =
+        ggplot2::element_text(
+        size = title.size,
+        face = title.face,
         hjust = 0
-      ),
-      # plot.subtitle = ggplot2::element_text(size = subtitle_size, face = "bold.italic", hjust = 0),
-      plot.subtitle = ggplot2::element_text(size = subtitle_size, hjust = 0),
-      plot.caption = ggplot2::element_text(face = "italic"),
-      ...
+        ),
+      plot.subtitle =
+        ggplot2::element_text(
+          size = subtitle.size,
+          face = subtitle.face,
+          hjust = 0
+        ),
+      plot.caption =
+        ggplot2::element_text(
+          size = caption.size,
+          face = caption.face,
+          hjust = 0
+        ),
     )
-  out
+
+  # ret <-
+  #   ret +
+  #   ggplot2::theme(...)
+  ret
 }
 
 
-#' Tony's theme (inspired by hrbrmstr)
+#' Custom theme (inspired by hrbrmstr)
 #'
-#' @description Borrows heavily from \code{hrbrthemes::theme_ipsum}.
-#' @details Legend is formatted in a different manner than  \code{hrbrthemes::theme_ipsum}.
-#' Not copied: \code{grid_col, grid, axis_co, axis, ticks}.
-#' @param base_family,plot_title_face,subtitle_face,strip_text_face,caption_face,axis_title_face character.
-#' @param plot_title_family,subtitle_family,strip_text_family,caption_family,axis_title_family character. Inhereit from base_family.
-#' @param axis_title_just character.
-#' @param base_size,plot_title_size,plot_title_margin,subtitle_size,subtitle_margin,strip_text_size,caption_size,caption_margin,axis_title_size,axis_text_size numeric.
-#' @param plot_margin numeric vector.
+#' @description Custom \code{ggplot2} theme that is based on \code{hrbrthemes::theme_ipsum()}.
+#' @details Uses \code{ggplot2::theme_minimal()} as basis.
+#' Legend is formatted in a different manner than \code{hrbrthemes::theme_ipsum()}.
+#' Parameters not borrowed: \code{grid_col, grid, axis.co, axis, ticks}.
+#' @param base_family,title.face,subtitle.face,strip.text.face,caption.face,axis.title.face character.
+#' @param title.family,subtitle.family,strip.text.family,caption.family,axis.title.family character. Inherit from base_family.
+#' @param axis.title.just character.
+#' @param base_size,title.size,title.margin,subtitle.size,subtitle.margin,strip.text.size,caption.size,caption.margin,axis.title.size,axis.text.size numeric.
+#' @param plot.margin numeric vector.
 #' @param ... dots. Additional parameters passed to \code{ggplot2::theme()}.
 #' @export
-theme_te_b <- function (base_family = "Arial Narrow",
-                        base_size = 11.5,
-                        plot_title_family = base_family,
-                        plot_title_size = 18,
-                        plot_title_face = "bold",
-                        plot_title_margin = 10,
-                        subtitle_family = base_family,
-                        subtitle_size = 12,
-                        subtitle_face = "plain",
-                        subtitle_margin = 15,
-                        strip_text_family = base_family,
-                        strip_text_size = 12,
-                        strip_text_face = "plain",
-                        caption_family = base_family,
-                        caption_size = 9,
-                        caption_face = "italic",
-                        caption_margin = 10,
-                        axis_text_size = base_size,
-                        axis_title_family = subtitle_family,
-                        axis_title_size = 9,
-                        axis_title_face = "plain",
-                        axis_title_just = "rt",
-                        plot_margin = ggplot2::margin(5, 5, 5, 5),
-                        ...) {
-  out <-
-    ggplot2::theme_minimal(base_family = base_family, base_size = base_size)
-  out <- out +
-    ggplot2::theme(legend.position = "bottom",
-                   legend.title = ggplot2::element_blank())
+theme_te_b <-
+  function(base_family = "Arial Narrow",
+           base_size = 12,
+           title.family = base_family,
+           title.size = 18,
+           title.face = "bold",
+           title.margin = 10,
+           subtitle.family = base_family,
+           subtitle.size = 12,
+           subtitle.face = "plain",
+           subtitle.margin = 10,
+           strip.text.family = base_family,
+           strip.text.size = 12,
+           strip.text.face = "plain",
+           caption.family = base_family,
+           caption.size = 12,
+           caption.face = "plain",
+           caption.margin = 10,
+           axis.text.size = base_size,
+           axis.title.family = subtitle.family,
+           axis.title.size = 12,
+           axis.title.face = "plain",
+           axis.title.just = "rt",
+           plot.margin = ggplot2::margin(1, 1, 1, 1),
+           ...) {
+    ret <-
+      ggplot2::theme_minimal(base_family = base_family, base_size = base_size)
 
-  # Heavily copied from here on.
-  xj <-
-    switch(
-      tolower(substr(axis_title_just, 1, 1)),
-      b = 0,
-      l = 0,
-      m = 0.5,
-      c = 0.5,
-      r = 1,
-      t = 1
-    )
-  yj <-
-    switch(
-      tolower(substr(axis_title_just, 2, 2)),
-      b = 0,
-      l = 0,
-      m = 0.5,
-      c = 0.5,
-      r = 1,
-      t = 1
-    )
+    ret <-
+      ret +
+      ggplot2::theme(
+        legend.position = "bottom",
+        legend.title = ggplot2::element_blank()
+      )
 
-  out <-
-    out + ggplot2::theme(
-      axis.text.x = ggplot2::element_text(
-        size = axis_text_size, margin =
-          ggplot2::margin(t = 0)
+    # Heavily copied from here on.
+    xj <-
+      switch(
+        tolower(substr(axis.title.just, 1, 1)),
+        b = 0,
+        l = 0,
+        m = 0.5,
+        c = 0.5,
+        r = 1,
+        t = 1
       )
-    )
-  out <-
-    out + ggplot2::theme(
-      axis.text.y = ggplot2::element_text(
-        size = axis_text_size,
-        margin = ggplot2::margin(r = 0)
+
+    yj <-
+      switch(
+        tolower(substr(axis.title.just, 2, 2)),
+        b = 0,
+        l = 0,
+        m = 0.5,
+        c = 0.5,
+        r = 1,
+        t = 1
       )
-    )
-  out <-
-    out + ggplot2::theme(
-      axis.title = ggplot2::element_text(
-        size = axis_title_size, family =
-          axis_title_family
+
+    ret <-
+      ret +
+      ggplot2::theme(
+        axis.text.x = ggplot2::element_text(
+          size = axis.text.size, margin =
+            ggplot2::margin(t = 0)
+        )
       )
-    )
-  out <-
-    out + ggplot2::theme(
-      axis.title.x = ggplot2::element_text(
-        hjust = xj,
-        size = axis_title_size,
-        family = axis_title_family,
-        face = axis_title_face
+
+    ret <-
+      ret +
+      ggplot2::theme(
+        axis.text.y = ggplot2::element_text(
+          size = axis.text.size,
+          margin = ggplot2::margin(r = 0)
+        )
       )
-    )
-  out <-
-    out + ggplot2::theme(
-      axis.title.y = ggplot2::element_text(
-        hjust = yj,
-        size = axis_title_size,
-        family = axis_title_family,
-        face = axis_title_face
+
+    ret <-
+      ret +
+      ggplot2::theme(
+        axis.title = ggplot2::element_text(
+          size = axis.title.size, family =
+            axis.title.family
+        )
       )
-    )
-  out <-
-    out + ggplot2::theme(
-      axis.title.y.right = ggplot2::element_text(
-        hjust = yj,
-        size = axis_title_size,
-        angle = 90,
-        family = axis_title_family,
-        face = axis_title_face
+
+    ret <-
+      ret +
+      ggplot2::theme(
+        axis.title.x = ggplot2::element_text(
+          hjust = xj,
+          size = axis.title.size,
+          family = axis.title.family,
+          face = axis.title.face
+        )
       )
-    )
-  out <-
-    out + ggplot2::theme(
-      strip.text = ggplot2::element_text(
-        hjust = 0,
-        size = strip_text_size,
-        face = strip_text_face,
-        family = strip_text_family
+
+    ret <-
+      ret +
+      ggplot2::theme(
+        axis.title.y = ggplot2::element_text(
+          hjust = yj,
+          size = axis.title.size,
+          family = axis.title.family,
+          face = axis.title.face
+        )
       )
-    )
-  out <-
-    out + ggplot2::theme(panel.spacing = grid::unit(2, "lines"))
-  out <-
-    out + ggplot2::theme(
-      plot.title = ggplot2::element_text(
-        hjust = 0,
-        size = plot_title_size,
-        margin = ggplot2::margin(b = plot_title_margin),
-        family = plot_title_family,
-        face = plot_title_face
+
+    ret <-
+      ret +
+      ggplot2::theme(
+        axis.title.y.right = ggplot2::element_text(
+          hjust = yj,
+          size = axis.title.size,
+          angle = 90,
+          family = axis.title.family,
+          face = axis.title.face
+        )
       )
-    )
-  out <-
-    out + ggplot2::theme(
-      plot.subtitle = ggplot2::element_text(
-        hjust = 0,
-        size = subtitle_size,
-        margin = ggplot2::margin(b = subtitle_margin),
-        family = subtitle_family,
-        face = subtitle_face
+
+    ret <-
+      ret +
+      ggplot2::theme(
+        strip.text = ggplot2::element_text(
+          hjust = 0,
+          size = strip.text.size,
+          face = strip.text.face,
+          family = strip.text.family
+        )
       )
-    )
-  out <-
-    out + ggplot2::theme(
-      plot.caption = ggplot2::element_text(
-        hjust = 1,
-        size = caption_size,
-        margin = ggplot2::margin(t = caption_margin),
-        family = caption_family,
-        face = caption_face
+    # ret <-
+    #   ret + ggplot2::theme(panel.spacing = grid::unit(2, "lines"))
+    ret <-
+      ret +
+      ggplot2::theme(panel.spacing = grid::unit(0.25, "lines"))
+
+    ret <-
+      ret +
+      ggplot2::theme(
+        plot.title = ggplot2::element_text(
+          hjust = 0,
+          size = title.size,
+          margin = ggplot2::margin(b = title.margin),
+          family = title.family,
+          face = title.face
+        )
       )
-    )
-  out <- out + ggplot2::theme(plot.margin = plot_margin)
-  out
-}
+
+    ret <-
+      ret +
+      ggplot2::theme(
+        plot.subtitle = ggplot2::element_text(
+          hjust = 0,
+          size = subtitle.size,
+          margin = ggplot2::margin(b = subtitle.margin),
+          family = subtitle.family,
+          face = subtitle.face
+        )
+      )
+
+    ret <-
+      ret +
+      ggplot2::theme(
+        plot.caption = ggplot2::element_text(
+          hjust = 0,
+          size = caption.size,
+          margin = ggplot2::margin(t = caption.margin),
+          family = caption.family,
+          face = caption.face
+        )
+      )
+    ret <- ret + ggplot2::theme(plot.margin = plot.margin)
+    ret
+  }
 
 #' @rdname theme_te
 #' @export
-theme_te_dx <- function(..., option = c("a", "b")) {
+theme_te_dx <- function(option = c("a", "b"), ...) {
   option <- match.arg(option)
   if(option == "a") {
-    out <- theme_te_a_dx(...)
+    ret <- theme_te_a_dx(...)
   } else if (option == "b") {
-    out <- theme_te_b_dx(...)
+    ret <- theme_te_b_dx(...)
   }
-  out
+  ret
 }
 
 #' @rdname theme_te_a
@@ -255,11 +304,11 @@ theme_te_b_dx <-
 theme_te_facet <- function(..., option = c("a", "b")) {
   option <- match.arg(option)
   if(option == "a") {
-    out <- theme_te_a_facet(...)
+    ret <- theme_te_a_facet(...)
   } else if (option == "b") {
-    out <- theme_te_b_facet(...)
+    ret <- theme_te_b_facet(...)
   }
-  out
+  ret
 }
 
 #' @rdname theme_te_a
@@ -279,11 +328,11 @@ theme_te_b_facet <-
 theme_te_facet_dx <- function(..., option = c("a", "b")) {
   option <- match.arg(option)
   if(option == "a") {
-    out <- theme_te_a_facet_dx(...)
+    ret <- theme_te_a_facet_dx(...)
   } else if (option == "b") {
-    out <- theme_te_b_facet_dx(...)
+    ret <- theme_te_b_facet_dx(...)
   }
-  out
+  ret
 }
 
 #' @rdname theme_te_a

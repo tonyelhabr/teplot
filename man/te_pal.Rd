@@ -18,7 +18,7 @@ te_pal(palette = "discrete", discrete = TRUE, reverse = FALSE)
 \item{reverse}{logical. Indicates whether the palette should be reversed.}
 }
 \description{
-Returns a function to be used by other functionhs.
+Returns a function to be used by other functions.
 }
 \details{
 Calls \code{scales::manual_pal()} if \code{discrete = TRUE} or  \code{colorRampPalette()} if

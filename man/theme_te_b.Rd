@@ -5,19 +5,18 @@
 \alias{theme_te_b_dx}
 \alias{theme_te_b_facet}
 \alias{theme_te_b_facet_dx}
-\title{Tony's theme (inspired by hrbrmstr)}
+\title{Custom theme (inspired by hrbrmstr)}
 \usage{
-theme_te_b(base_family = "Arial Narrow", base_size = 11.5,
-  plot_title_family = base_family, plot_title_size = 18,
-  plot_title_face = "bold", plot_title_margin = 10,
-  subtitle_family = base_family, subtitle_size = 12,
-  subtitle_face = "plain", subtitle_margin = 15,
-  strip_text_family = base_family, strip_text_size = 12,
-  strip_text_face = "plain", caption_family = base_family,
-  caption_size = 9, caption_face = "italic", caption_margin = 10,
-  axis_text_size = base_size, axis_title_family = subtitle_family,
-  axis_title_size = 9, axis_title_face = "plain", axis_title_just = "rt",
-  plot_margin = ggplot2::margin(5, 5, 5, 5), ...)
+theme_te_b(base_family = "Arial Narrow", base_size = 12,
+  title.family = base_family, title.size = 18, title.face = "bold",
+  title.margin = 10, subtitle.family = base_family, subtitle.size = 12,
+  subtitle.face = "plain", subtitle.margin = 10,
+  strip.text.family = base_family, strip.text.size = 12,
+  strip.text.face = "plain", caption.family = base_family,
+  caption.size = 12, caption.face = "plain", caption.margin = 10,
+  axis.text.size = base_size, axis.title.family = subtitle.family,
+  axis.title.size = 12, axis.title.face = "plain", axis.title.just = "rt",
+  plot.margin = ggplot2::margin(1, 1, 1, 1), ...)
 
 theme_te_b_dx(...)
 
@@ -26,22 +25,23 @@ theme_te_b_facet(...)
 theme_te_b_facet_dx(...)
 }
 \arguments{
-\item{base_family, plot_title_face, subtitle_face, strip_text_face, caption_face, axis_title_face}{character.}
+\item{base_family, title.face, subtitle.face, strip.text.face, caption.face, axis.title.face}{character.}
 
-\item{base_size, plot_title_size, plot_title_margin, subtitle_size, subtitle_margin, strip_text_size, caption_size, caption_margin, axis_title_size, axis_text_size}{numeric.}
+\item{base_size, title.size, title.margin, subtitle.size, subtitle.margin, strip.text.size, caption.size, caption.margin, axis.title.size, axis.text.size}{numeric.}
 
-\item{plot_title_family, subtitle_family, strip_text_family, caption_family, axis_title_family}{character. Inhereit from base_family.}
+\item{title.family, subtitle.family, strip.text.family, caption.family, axis.title.family}{character. Inherit from base_family.}
 
-\item{axis_title_just}{character.}
+\item{axis.title.just}{character.}
 
-\item{plot_margin}{numeric vector.}
+\item{plot.margin}{numeric vector.}
 
 \item{...}{dots. Additional parameters passed to \code{ggplot2::theme()}.}
 }
 \description{
-Borrows heavily from \code{hrbrthemes::theme_ipsum}.
+Custom \code{ggplot2} theme that is based on \code{hrbrthemes::theme_ipsum()}.
 }
 \details{
-Legend is formatted in a different manner than  \code{hrbrthemes::theme_ipsum}.
-Not copied: \code{grid_col, grid, axis_co, axis, ticks}.
+Uses \code{ggplot2::theme_minimal()} as basis.
+Legend is formatted in a different manner than \code{hrbrthemes::theme_ipsum()}.
+Parameters not borrowed: \code{grid_col, grid, axis.co, axis, ticks}.
 }

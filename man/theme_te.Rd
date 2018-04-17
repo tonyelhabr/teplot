@@ -9,7 +9,7 @@
 \usage{
 theme_te(..., option = c("a", "b"))
 
-theme_te_dx(..., option = c("a", "b"))
+theme_te_dx(option = c("a", "b"), ...)
 
 theme_te_facet(..., option = c("a", "b"))
 
