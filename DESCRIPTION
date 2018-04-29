@@ -3,7 +3,7 @@ Type: Package
 Title: Tony's Personal Package for Plotting
 Version: 0.0.1.0000
 Author: Tony ElHabr <anthonyelhabr@gmail.com>
-Maintainer: Tony ElHabr <anthonyelhabr@gmail.com>
+Authors@R: person("Tony", "ElHabr", email = "anthonyelhabr@gmail.com", role = c("aut", "cre"))
 Description: A package for Tony's plotting functions.
 License: MIT + file LICENSE
 Encoding: UTF-8

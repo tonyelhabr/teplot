@@ -69,63 +69,70 @@ library("teplot")
 library("ggplot2")
 library("datasets")
 
-viz_labs <-
-  labs(title = "A Title.",
-       subtitle = "A subtitle.",
-       caption = "A caption.")
-
 viz_cars <-
   ggplot(data = mtcars, aes(x = wt, y = mpg, color = factor(gear))) +
   geom_point(size = 2) +
-  geom_smooth(method = "lm", se = FALSE, size = 2) +
-  viz_labs
+  geom_smooth(method = "lm", se = FALSE, size = 2)
+# viz_cars + theme_grey()
+viz_cars +
+  teplot::scale_color_te() +
+  teplot::theme_te() +
+  labs(title = "Yet another `mtcars` Example",
+      subtitle = "Just showing off the custom theme.",
+      caption = "And the custom colors.")
 
 viz_cars_facet <-
   viz_cars +
   facet_wrap( ~ am, scales = "free")
-
+# viz_cars_facet + theme_grey()
+viz_cars_facet +
+  teplot::scale_color_te() +
+  teplot::theme_te_facet() +
+  labs(title = "Similar to the Previous Example, but Facetted",
+       subtitle = "The panels are given borders with this version of the theme (for facets)",
+       caption = "Also, this shows off the strip text.")
+  
 viz_diamonds <-
   ggplot(data = diamonds, aes(x = clarity, fill = color)) +
-  geom_bar() +
-  viz_labs
-
-viz_iris <-
-  ggplot(data = iris, aes(
-    x = ceiling(Sepal.Length),
-    y = ceiling(Sepal.Width),
-    fill = Petal.Length
-  )) +
-  geom_tile() +
-  viz_labs
+  geom_bar()
+# viz_diamonds + theme_grey()
+viz_diamonds +
+  teplot::scale_fill_te() +
+  teplot::theme_te_dx() +
+  labs(title = "How about them `diamonds`?",
+       subtitle = "Note that the major vertical gridlines are removed with this theme.",
+       caption = "Also, this shows off more of the range of colors in the custom palette.")
 
 viz_diamonds_facet <-
   viz_diamonds +
   facet_wrap( ~ cut, scales = "free")
-
-# viz_iris <-
-#   ggplot(iris, aes(x = Species, y = Sepal.Length, fill = Species)) +
-#   geom_col() +
-#   viz_labs
-
-# viz_cars + theme_grey()
-viz_cars + teplot::scale_color_te() + teplot::theme_te()
-# viz_cars + theme_te(option = "b")
-
-# viz_cars_facet + theme_grey()
-viz_cars_facet + teplot::scale_color_te() + teplot::theme_te_facet()
-# viz_cars_facet + theme_te_facet(option = "b")
-
-# viz_diamonds + theme_grey()
-viz_diamonds + teplot::scale_fill_te() + teplot::theme_te_dx()
-
 # viz_diamonds_facet + theme_grey()
-viz_diamonds_facet + teplot::scale_fill_te() + teplot::theme_te_facet_dx()
+viz_diamonds_facet +
+  teplot::scale_fill_te() +
+  teplot::theme_te_facet_dx() +
+  labs(title = "`diamond`, Facetted",
+       subtitle = "This version of the theme combines the modifications of the `_facet` and `_dx` versions.",
+       caption = "The vibrant colors still 'pop' off the page, even with a facetted plot.")
 
 # viz_diamonds_facet + theme_grey()
 # viz_iris + teplot::scale_fill_te(palette = "cool", discrete = FALSE) + teplot::theme_te()
 ```
 
+```{r include = FALSE, eval = FALSE}
+# viz_iris <-
+#   ggplot(data = iris, aes(
+#     x = ceiling(Sepal.Length),
+#     y = ceiling(Sepal.Width),
+#     fill = Petal.Length
+#   )) +
+#   geom_tile() +
+#   viz_labs
+```
+
+
 Here are some examples showing the map functions.
+
+(Credit to https://journal.r-project.org/archive/2013-1/kahle-wickham.pdf for the data for the following example.)
 
 ```{r}
 library("ggmap")
@@ -137,9 +144,9 @@ ggmap_stamen_tx +
 
 ```
 
-Credit to https://mgimond.github.io/Spatial/interpolation-in-r.html for the data for the following example.
+(Credit to https://mgimond.github.io/Spatial/interpolation-in-r.html for the data for the following example.)
 
-```{r include = FALSE, eval = FALSE}
+```{r}
 library("tmap")
 spdf_tx_precip <- teplot::spdf_tx_precip
 spdf_tx <- teplot::spdf_tx
