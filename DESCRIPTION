@@ -1,7 +1,7 @@
 Package: teplot
 Type: Package
 Title: Tony's Personal Package for Plotting
-Version: 0.0.0.9000
+Version: 0.0.1.0000
 Author: Tony ElHabr <anthonyelhabr@gmail.com>
 Maintainer: Tony ElHabr <anthonyelhabr@gmail.com>
 Description: A package for Tony's plotting functions.
@@ -12,6 +12,7 @@ RoxygenNote: 6.0.1
 Depends: R (>= 2.10)
 Imports:
     ggplot2,
+    maps,
     scales,
     utils,
     grid,

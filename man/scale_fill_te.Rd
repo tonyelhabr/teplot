@@ -2,7 +2,7 @@
 % Please edit documentation in R/scale_x_te.R
 \name{scale_fill_te}
 \alias{scale_fill_te}
-\title{Fill scale constructor for te_colors}
+\title{Fill scale constructor for \code{te_color}}
 \source{
 \url{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}.
 \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}

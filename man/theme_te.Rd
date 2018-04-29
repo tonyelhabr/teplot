@@ -5,25 +5,48 @@
 \alias{theme_te_dx}
 \alias{theme_te_facet}
 \alias{theme_te_facet_dx}
+\alias{theme_te_map}
 \title{Custom theme}
 \usage{
-theme_te(..., option = c("a", "b"))
+theme_te(base_family = "Arial Narrow", base_size = 12, title.size = 16,
+  title.face = "bold", subtitle.size = base_size, subtitle.face = "plain",
+  caption.size = base_size, caption.face = subtitle.face,
+  strip.text.size = base_size, strip.text.face = subtitle.face,
+  axis.title.size = base_size, axis.title.face = subtitle.face,
+  axis.text.size = base_size, axis.text.face = subtitle.face, ...)
 
-theme_te_dx(option = c("a", "b"), ...)
+theme_te_dx(...)
 
-theme_te_facet(..., option = c("a", "b"))
+theme_te_facet(...)
 
-theme_te_facet_dx(..., option = c("a", "b"))
+theme_te_facet_dx(...)
+
+theme_te_map(..., panel.background.fill = NA, panel.background.color = NA,
+  strip.background.fill = panel.background.fill,
+  strip.background.color = panel.background.color)
 }
 \arguments{
-\item{...}{dots. Parameters passed to theme specified by option.}
+\item{base_family, title.face, subtitle.face, caption.face, strip.text.face, axis.title.face, axis.text.face}{character.}
 
-\item{option}{character. Either "a" or "b".}
+\item{base_size, title.size, subtitle.size, caption.size, strip.text.size, axis.title.size, axis.text.size}{numeric.}
+
+\item{...}{dots. Additional parameters passed to \code{ggplot2::theme()}.}
+
+\item{panel.background.fill, panel.background.color, strip.background.fill, strip.background.color}{character.
+Passed directly to \code{ggplot2::theme()} parameters with similar names.}
 }
 \description{
 A custom \code{ggplot2} theme.
+
+A custom \code{ggplot2} theme.
 }
 \details{
-Option "a" is an 'original' theme.
-Option "b" is an adapted \code{hrbrthemes::theme_ipusm()} theme.
+Uses \code{ggplot2::theme_minimal()} as basis.
+
+Uses \code{ggplot2::theme_te()} as basis.
+}
+\seealso{
+\url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/theme-ipsum.r}
+
+\url{http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html}.
 }

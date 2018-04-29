@@ -71,7 +71,7 @@ te_palettes <- list(
   `continuous` = te_cols("purple", "yellow")
 )
 
-#' Return function to interpolate a te_color palette
+#' Return function to interpolate a \code{te_color} palette
 #'
 #' @description Returns a function to be used by other functions.
 #' @details Calls \code{scales::manual_pal()} if \code{discrete = TRUE} or  \code{colorRampPalette()} if
@@ -79,6 +79,8 @@ te_palettes <- list(
 #' @param palette character. Name of palette in \code{te_palettes} list.
 #' @param discrete logical. Indicates whether the color palette is discrete or not.
 #' @param reverse logical. Indicates whether the palette should be reversed.
+#' @importFrom scales manual_pal
+#' @importFrom grDevices colorRampPalette
 #' @source \url{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}.
 #' \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}
 te_pal <- function(palette = "discrete",
@@ -108,7 +110,7 @@ te_pal <- function(palette = "discrete",
   ret
 }
 
-#' Color scale constructor for te_colors
+#' Color scale constructor for \code{te_color}
 #'
 #' @description Color function for use with \code{ggplot2}.
 #' @details None.
@@ -135,7 +137,7 @@ scale_color_te <-
   }
 
 
-#' Fill scale constructor for te_colors
+#' Fill scale constructor for \code{te_color}
 #'
 #' @description Color function for use with \code{ggplot2}.
 #' @details None.

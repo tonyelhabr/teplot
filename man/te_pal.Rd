@@ -2,7 +2,7 @@
 % Please edit documentation in R/scale_x_te.R
 \name{te_pal}
 \alias{te_pal}
-\title{Return function to interpolate a te_color palette}
+\title{Return function to interpolate a \code{te_color} palette}
 \source{
 \url{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}.
 \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}

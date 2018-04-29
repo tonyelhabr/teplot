@@ -5,6 +5,8 @@
 #'
 #' @name teplot
 #' @docType package
+#' @import ggplot2
+#' @import maps
 #' @importFrom grDevices windowsFonts
 #' @importFrom extrafont loadfonts
 NULL

@@ -2,7 +2,7 @@
 % Please edit documentation in R/scale_x_te.R
 \name{scale_color_te}
 \alias{scale_color_te}
-\title{Color scale constructor for te_colors}
+\title{Color scale constructor for \code{te_color}}
 \source{
 \url{https://drsimonj.svbtle.com/creating-corporate-colour-palettes-for-ggplot2}.
 \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/scales.r}
