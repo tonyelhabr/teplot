@@ -117,28 +117,40 @@ theme_te_facet_dx <- function(...)
 #' Custom theme for maps
 #'
 #' @description A custom \code{ggplot2} theme.
-#' @details Uses \code{ggplot2::theme_te()} as basis.
+#' @details Uses \code{ggplot2::theme_bw()} as basis. It is recommended to call
+#' \code{theme_te()} beforehand, then this function.
 #' @param panel.background.fill,panel.background.color,strip.background.fill,strip.background.color character.
 #' Passed directly to \code{ggplot2::theme()} parameters with similar names.
+#' @param ... dots. Passed directly to \code{ggplot2::theme_bw()}
 #'
-#' @rdname theme_te
+#' @rdname theme_te_map
 #' @seealso \url{http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html}.
+#' \url{https://gist.github.com/hrbrmstr/33baa3a79c5cfef0f6df}.
 #' @export
 theme_te_map <-
-  function(...,
-           panel.background.fill = NA,
-           panel.background.color = NA,
+  function(panel.background.fill = NULL,
+           panel.background.color = NULL,
            strip.background.fill = panel.background.fill,
-           strip.background.color = panel.background.color) {
-    # ggplot2::theme_bw() +
-    theme_te(...) +
+           strip.background.color = panel.background.color,
+           ...) {
+    ret <- ggplot2::theme_bw(...)
+    # ret <- theme_te(...)
+
+    ret <-
+      ret +
+      # theme_te(...) %+replace%
       ggplot2::theme(
         axis.text = ggplot2::element_blank(),
         axis.line = ggplot2::element_blank(),
         axis.ticks = ggplot2::element_blank(),
+        axis.title = ggplot2::element_blank(),
         panel.border = ggplot2::element_blank(),
         panel.grid = ggplot2::element_blank(),
-        axis.title = ggplot2::element_blank(),
+        # panel.spacing = grid::unit(0, "lines"),
+        legend.justification = c(0,0),
+        legend.position = c(0,0),
+        # panel.background = ggplot2::element_blank(),
+        # plot.background = ggplot2::element_blank(),
         panel.background =
           ggplot2::element_rect(
             fill = panel.background.fill,
@@ -150,6 +162,10 @@ theme_te_map <-
             color = strip.background.color
           )
       )
+    # ret <- ret + theme_te(...)
+    ret
   }
 
-
+#' @rdname theme_te_map
+#' @export
+theme_map <- theme_te_map

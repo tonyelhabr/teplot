@@ -9,3 +9,4 @@ Thumbs.db
 ^\.travis\.yml$
 ^codecov\.yml$
 ^data-raw$
+docs/
