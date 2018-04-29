@@ -52,7 +52,7 @@ This package containts functions that I often use.
 Here is a list of all functions in the package.
 
 ```{r echo = FALSE}
-# library("teplot")
+library("teplot")
 ls("package:teplot")
 ```
 
@@ -62,11 +62,10 @@ ls("package:teplot")
 
 ## Examples
 
-```{r echo = FALSE}
-library("teplot")
-```
+Here are some examples showing my custom theme and color palette.
 
-```{r }
+```{r}
+library("teplot")
 library("ggplot2")
 library("datasets")
 
@@ -125,3 +124,34 @@ viz_diamonds_facet + teplot::scale_fill_te() + teplot::theme_te_facet_dx()
 # viz_diamonds_facet + theme_grey()
 # viz_iris + teplot::scale_fill_te(palette = "cool", discrete = FALSE) + teplot::theme_te()
 ```
+
+Here are some examples showing the map functions.
+
+```{r}
+library("ggmap")
+crime <- ggmap::crime
+ggmap_stamen_tx <- teplot::ggmap_stamen_tx
+
+ggmap_stamen_tx +
+  geom_point(data = crime, aes(x = lon, y = lat), color = "red", size = 1)
+
+```
+
+Credit to https://mgimond.github.io/Spatial/interpolation-in-r.html for the data for the following example.
+
+```{r include = FALSE, eval = FALSE}
+library("tmap")
+spdf_tx_precip <- teplot::spdf_tx_precip
+spdf_tx <- teplot::spdf_tx
+tmap::tm_shape(spdf_tx) +
+  tmap::tm_polygons(col = "white", alpha = 0) +
+  tmap::tm_shape(spdf_tx_precip) +
+  tmap::tm_dots(
+    col = "Precip_in",
+    # palette = "RdBu",
+    auto.palette.mapping = FALSE,
+    title = "Sampled precipitation \n(in inches)",
+    size = 0.7
+  )
+```
+
