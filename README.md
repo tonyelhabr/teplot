@@ -16,19 +16,26 @@ Notes
 
 Here is a list of all functions in the package.
 
-    #>  [1] "convert_state_abb_to_name" "create_map_state"         
-    #>  [3] "get_color_inv"             "get_map_data_county"      
-    #>  [5] "get_map_data_county_tx"    "get_map_data_state"       
-    #>  [7] "get_map_data_state_tx"     "ggmap_stamen_tx"          
-    #>  [9] "ggmap_stamen_tx_raw"       "scale_color_te"           
-    #> [11] "scale_fill_te"             "spdf_tx"                  
-    #> [13] "spdf_tx_precip"            "te_colors"                
-    #> [15] "theme_te"                  "theme_te_dx"              
-    #> [17] "theme_te_facet"            "theme_te_facet_dx"        
-    #> [19] "theme_te_map"              "tmap_tx"
+    #>  [1] "convert_state_abb_to_name" "create_map_base"          
+    #>  [3] "create_map_base_tx"        "create_map_state"         
+    #>  [5] "get_color_inv"             "get_map_data_county"      
+    #>  [7] "get_map_data_county_tx"    "get_map_data_state"       
+    #>  [9] "get_map_data_state_tx"     "ggmap_stamen_tx"          
+    #> [11] "ggmap_stamen_tx_raw"       "labs_xy_null"             
+    #> [13] "scale_color_te"            "scale_fill_te"            
+    #> [15] "scale_x_pretty_comma"      "scale_x_pretty_percent"   
+    #> [17] "scale_xy_pretty_comma"     "scale_xy_pretty_percent"  
+    #> [19] "scale_y_pretty_comma"      "scale_y_pretty_percent"   
+    #> [21] "spdf_tx"                   "spdf_tx_precip"           
+    #> [23] "te_colors"                 "theme_map"                
+    #> [25] "theme_te"                  "theme_te_dx"              
+    #> [27] "theme_te_facet"            "theme_te_facet_dx"        
+    #> [29] "tmap_tx"
 
 Examples
 --------
+
+### `theme_te*()` and `te_colors`
 
 Here are some examples showing my custom theme and color palette.
 
@@ -89,6 +96,7 @@ viz_diamonds +
 viz_diamonds_facet <-
   viz_diamonds +
   facet_wrap( ~ cut, scales = "free")
+
 # viz_diamonds_facet + theme_grey()
 viz_diamonds_facet +
   teplot::scale_fill_te() +
@@ -108,6 +116,22 @@ viz_diamonds_facet +
 
 Here are some examples showing the map functions.
 
+``` r
+teplot::create_map_state(state = "texas", show_county = FALSE) +
+  teplot::theme_map() +
+  labs(title = "Texas", 
+       subtitle = "Is a Big State",
+       caption = "And it's more urban than most tourists probably realize.")
+```
+
+![](man/README/README-unnamed-chunk-7-1.png)
+
+``` r
+teplot::create_map_base(state = "texas")
+```
+
+![](man/README/README-unnamed-chunk-8-1.png)
+
 (Credit to <https://journal.r-project.org/archive/2013-1/kahle-wickham.pdf> for the data for the following example.)
 
 ``` r
@@ -119,7 +143,7 @@ ggmap_stamen_tx +
   geom_point(data = crime, aes(x = lon, y = lat), color = "red", size = 1)
 ```
 
-![](man/README/README-unnamed-chunk-7-1.png)
+![](man/README/README-unnamed-chunk-9-1.png)
 
 (Credit to <https://mgimond.github.io/Spatial/interpolation-in-r.html> for the data for the following example.)
 
@@ -139,4 +163,4 @@ tmap::tm_shape(spdf_tx) +
   )
 ```
 
-![](man/README/README-unnamed-chunk-8-1.png)
+![](man/README/README-unnamed-chunk-10-1.png)
