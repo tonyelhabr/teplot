@@ -12,7 +12,9 @@ theme_te(base_family = "Arial Narrow", base_size = 12, title.size = 16,
   caption.size = base_size, caption.face = subtitle.face,
   strip.text.size = base_size, strip.text.face = subtitle.face,
   axis.title.size = base_size, axis.title.face = subtitle.face,
-  axis.text.size = base_size, axis.text.face = subtitle.face, ...)
+  axis.text.size = base_size, axis.text.face = subtitle.face,
+  legend.position = "bottom", legend.title = ggplot2::element_blank(),
+  panel.grid.minor = ggplot2::element_blank(), ...)
 
 theme_te_dx(...)
 
@@ -25,13 +27,23 @@ theme_te_facet_dx(...)
 
 \item{base_size, title.size, subtitle.size, caption.size, strip.text.size, axis.title.size, axis.text.size}{numeric.}
 
+\item{legend.position}{gg element. Set to \code{"bottom"} by default
+(instead of "right").}
+
+\item{legend.title}{gg element. Set to \code{ggplot2::element_blank()} by default
+(instead of \code{ggplot2::element_text()}).}
+
+\item{panel.grid.minor}{gg element. Set to \code{ggplot2::element_blank()} by default
+(instead of \code{ggplot2::element_line()}).}
+
 \item{...}{dots. Additional parameters passed to \code{ggplot2::theme()}.}
 }
 \description{
 A custom \code{ggplot2} theme.
 }
 \details{
-Uses \code{ggplot2::theme_minimal()} as basis.
+Uses \code{ggplot2::theme_minimal()} as basis. Customized
+for personal preferences.
 }
 \seealso{
 \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/theme-ipsum.r}

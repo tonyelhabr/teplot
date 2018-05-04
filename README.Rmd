@@ -108,6 +108,7 @@ viz_diamonds +
 viz_diamonds_facet <-
   viz_diamonds +
   facet_wrap( ~ cut, scales = "free")
+
 # viz_diamonds_facet + theme_grey()
 viz_diamonds_facet +
   teplot::scale_fill_te() +
@@ -132,22 +133,22 @@ viz_diamonds_facet +
 ```
 
 
+Here are some examples showing the map functions.
 
 ```{r}
 teplot::create_map_state(state = "texas", show_county = FALSE) +
-  # teplot::theme_te_map() +
-  teplot::theme_te() +
-  teplot::theme_te_map() +
+  teplot::theme_map() +
   labs(title = "Texas", 
-                subtitle = "Is a Big State",
-                caption = "And it's more urban than most tourists probably realize.")
+       subtitle = "Is a Big State",
+       caption = "And it's more urban than most tourists probably realize.")
 
 ```
 
-Here are some examples showing the map functions.
+```{r}
+teplot::create_map_base(state = "texas")
+```
 
 (Credit to https://journal.r-project.org/archive/2013-1/kahle-wickham.pdf for the data for the following example.)
-
 
 ```{r}
 library("ggmap")

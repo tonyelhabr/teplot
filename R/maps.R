@@ -26,7 +26,6 @@ convert_state_abb_to_name <- function(state = NULL) {
 #' Get data for \code{ggplot2} U.S. state map
 #'
 #' @inheritParams convert_state_abb_to_name
-#'
 #' @return data.frame.
 #' @seealso \code{ggplot2::map_data()}
 #' @rdname get_map_data
@@ -67,25 +66,22 @@ get_map_data_state_tx <- function(state = "texas") {
 #' @param color character. Either a hex code or a valid color name.
 #'
 #' @return character.
-#' @rdname get_color_inv
 #' @export
 get_color_inv <- function(color = NULL) {
   stopifnot(!is.null(color), length(color) == 1)
   grDevices::rgb(t(255 - grDevices::col2rgb(color)), max = 255)
 }
 
-#' Create a \code{ggplot2} map for a single U.S. state
+#' Get data for a \code{ggplot2} map of a single U.S. state
 #'
 #' @description Create the state layer for a \code{ggplot2} plot.
-#' @details Only works for a single state. It is expected that \code{theme_te_map()} is called beforehand.
+#' @details Only works for a single state.
 #' @inheritParams convert_state_abb_to_name
 #' @param show_county logical. Whether or not to show county lines for specified state.
 #' @param fill,color character. Either a hex code or a valid color name.
 #' Parameters passed directly to \code{ggplot2::geom_polygon()}.
-#'
 #' @return gg.
 #' @seealso \code{ggplot2::map_data()}
-#' @rdname create_map_state
 #' @export
 create_map_state <-
   function(state = NULL,
@@ -105,11 +101,11 @@ create_map_state <-
 
     ret <-
       ggplot2::ggplot(
-      data = data_state,
-      ggplot2::aes(x = long, y = lat, group = group),
-      color = color,
-      fill = fill
-    ) +
+        data = data_state,
+        ggplot2::aes(x = long, y = lat, group = group),
+        color = color,
+        fill = fill
+      ) +
       ggplot2::geom_polygon(color = color, fill = fill) +
       ggplot2::coord_fixed(1.3)
 
@@ -133,5 +129,29 @@ create_map_state <-
     }
 
     ret
-
   }
+
+
+#' Create a \code{ggplot2} map for a single U.S. state
+#'
+#' @description Create the state layer for a \code{ggplot2} plot.
+#' @details Only works for a single state.
+#' @inheritParams create_map_state
+#' @return gg.
+#' @export
+create_map_base <-
+  function(state = NULL, show_county = FALSE) {
+    create_map_state(state = state, show_county = show_county) +
+      theme_map()
+  }
+
+#' @rdname create_map_base
+#' @export
+create_map_base_tx <-
+  function(state = "texas", show_county = FALSE) {
+    create_map_base(
+      state = state,
+      show_county = show_county
+    )
+  }
+

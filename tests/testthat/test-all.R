@@ -18,8 +18,14 @@ test_that("maps_tx", {
 
   expect_equal(get_color_inv("#FFFFFF"), "#000000")
 
-  gg <- create_map_state("tx")
-  expect_true(ggplot2::is.ggplot(gg))
+  map_tx <- create_map_state("tx")
+  expect_true(ggplot2::is.ggplot(map_tx))
+
+  map_base_tx <- create_map_base(state = "texas")
+  expect_true(ggplot2::is.ggplot(map_base_tx))
+
+  map_base_tx <- create_map_base_tx()
+  expect_true(ggplot2::is.ggplot(map_base_tx))
 
 
 })
@@ -32,6 +38,12 @@ test_that("theme", {
   expect_true(ggplot2::is.theme(theme_te))
   expect_true(length(theme_te) == 59)
 
+  map_base_tx <- create_map_base(state = "texas")
+  expect_true(ggplot2::is.ggplot(map_base_tx))
+
+  map_base_tx <- create_map_base_tx()
+  expect_true(ggplot2::is.ggplot(map_base_tx))
+
   theme_te_dx <- theme_te_dx()
   expect_true(!is.null(theme_te_dx$panel.grid.major.x))
   expect_equal(length(theme_te), length(theme_te_dx) - 1)
@@ -43,7 +55,7 @@ test_that("theme", {
   theme_te_facet_dx <- theme_te_facet_dx()
   expect_equal(length(theme_te), length(theme_te_facet_dx) - 1)
 
-  theme_te_map <- theme_te_map()
-  expect_equal(length(theme_te), length(theme_te_map) - 1)
+  theme_map <- theme_map()
+  expect_equal(length(theme_te), length(theme_map))
 
 })
