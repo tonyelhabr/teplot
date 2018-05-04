@@ -1,6 +1,7 @@
 
 context("maps")
 require("ggplot2")
+require("maps")
 
 test_that("maps_tx", {
 
@@ -18,11 +19,12 @@ test_that("maps_tx", {
 
   expect_equal(get_color_inv("#FFFFFF"), "#000000")
 
-  map_tx <- create_map_state("tx")
+  # NOTE: This test is throwing an error for some reason...
+  map_tx <- create_map_state(state = "texas")
   expect_true(ggplot2::is.ggplot(map_tx))
 
-  map_base_tx <- create_map_base(state = "texas")
-  expect_true(ggplot2::is.ggplot(map_base_tx))
+  map_base <- create_map_base(state = "texas")
+  expect_true(ggplot2::is.ggplot(map_base))
 
   map_base_tx <- create_map_base_tx()
   expect_true(ggplot2::is.ggplot(map_base_tx))
@@ -37,12 +39,6 @@ test_that("theme", {
   theme_te <- theme_te()
   expect_true(ggplot2::is.theme(theme_te))
   expect_true(length(theme_te) == 59)
-
-  map_base_tx <- create_map_base(state = "texas")
-  expect_true(ggplot2::is.ggplot(map_base_tx))
-
-  map_base_tx <- create_map_base_tx()
-  expect_true(ggplot2::is.ggplot(map_base_tx))
 
   theme_te_dx <- theme_te_dx()
   expect_true(!is.null(theme_te_dx$panel.grid.major.x))

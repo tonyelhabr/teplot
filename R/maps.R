@@ -89,7 +89,7 @@ create_map_state <-
            fill = "white",
            color = "black") {
     stopifnot(!is.null(state), length(state) == 1)
-    data_state <- get_map_data_state(state)
+    data_state <- get_map_data_state(state = state)
 
     if (color == fill) {
       color_old <- color
@@ -108,7 +108,6 @@ create_map_state <-
       ) +
       ggplot2::geom_polygon(color = color, fill = fill) +
       ggplot2::coord_fixed(1.3)
-
 
     if(show_county) {
       data_county <- get_map_data_county(state)
@@ -135,7 +134,7 @@ create_map_state <-
 #' Create a \code{ggplot2} map for a single U.S. state
 #'
 #' @description Create the state layer for a \code{ggplot2} plot.
-#' @details Only works for a single state.
+#' @details This is just a wrapper for \code{create_map_state(...)} + \code{theme_map()}
 #' @inheritParams create_map_state
 #' @return gg.
 #' @export
