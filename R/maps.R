@@ -25,6 +25,10 @@ convert_state_abb_to_name <- function(state = NULL) {
 
 #' Get data for \code{ggplot2} U.S. state map
 #'
+#' @description Work with \code{ggplot2::map_date()}.
+#' @details Note that \code{region} is the column name for states,
+#' and \code{subregion} is the column name for counties.
+#' (This is the convention used by \code{ggplot2::map_date()}.
 #' @inheritParams convert_state_abb_to_name
 #' @return data.frame.
 #' @seealso \code{ggplot2::map_data()}
@@ -76,6 +80,9 @@ get_color_inv <- function(color = NULL) {
 #'
 #' @description Create the state layer for a \code{ggplot2} plot.
 #' @details Only works for a single state.
+#' Note that when extra layers are added, they must specify a \code{group} (e.g. \code{group = ""}),
+#' in the \code{ggplot2::aes()} call. Otherwise, an error message is returned.
+#'
 #' @inheritParams convert_state_abb_to_name
 #' @param show_county logical. Whether or not to show county lines for specified state.
 #' @param fill,color character. Either a hex code or a valid color name.
@@ -134,12 +141,13 @@ create_map_state <-
 #' Create a \code{ggplot2} map for a single U.S. state
 #'
 #' @description Create the state layer for a \code{ggplot2} plot.
-#' @details This is just a wrapper for \code{create_map_state(...)} + \code{theme_map()}
+#' @details This is just a wrapper for \code{create_map_state(...)} + \code{theme_map(...)}
 #' @inheritParams create_map_state
+#' @param ... dots. Arguments passed to \code{theme_map()}
 #' @return gg.
 #' @export
 create_map_base <-
-  function(state = NULL, show_county = FALSE) {
+  function(state = NULL, show_county = FALSE, ...) {
     create_map_state(state = state, show_county = show_county) +
       theme_map()
   }
@@ -147,10 +155,11 @@ create_map_base <-
 #' @rdname create_map_base
 #' @export
 create_map_base_tx <-
-  function(state = "texas", show_county = FALSE) {
+  function(state = "texas", show_county = FALSE, ...) {
     create_map_base(
       state = state,
-      show_county = show_county
+      show_county = show_county,
+      ...
     )
   }
 

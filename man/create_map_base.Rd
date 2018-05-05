@@ -5,15 +5,17 @@
 \alias{create_map_base_tx}
 \title{Create a \code{ggplot2} map for a single U.S. state}
 \usage{
-create_map_base(state = NULL, show_county = FALSE)
+create_map_base(state = NULL, show_county = FALSE, ...)
 
-create_map_base_tx(state = "texas", show_county = FALSE)
+create_map_base_tx(state = "texas", show_county = FALSE, ...)
 }
 \arguments{
 \item{state}{character for state name. May either be an abbreviation or full name and
 may be either lower-case or upper-case.}
 
 \item{show_county}{logical. Whether or not to show county lines for specified state.}
+
+\item{...}{dots. Arguments passed to \code{theme_map()}}
 }
 \value{
 gg.
@@ -22,5 +24,5 @@ gg.
 Create the state layer for a \code{ggplot2} plot.
 }
 \details{
-Only works for a single state.
+This is just a wrapper for \code{create_map_state(...)} + \code{theme_map(...)}
 }

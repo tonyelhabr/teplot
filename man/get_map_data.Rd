@@ -23,7 +23,12 @@ may be either lower-case or upper-case.}
 data.frame.
 }
 \description{
-Get data for \code{ggplot2} U.S. state map
+Work with \code{ggplot2::map_date()}.
+}
+\details{
+Note that \code{region} is the column name for states,
+and \code{subregion} is the column name for counties.
+(This is the convention used by \code{ggplot2::map_date()}.
 }
 \seealso{
 \code{ggplot2::map_data()}

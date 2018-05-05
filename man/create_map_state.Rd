@@ -24,6 +24,8 @@ Create the state layer for a \code{ggplot2} plot.
 }
 \details{
 Only works for a single state.
+Note that when extra layers are added, they must specify a \code{group} (e.g. \code{group = ""}),
+in the \code{ggplot2::aes()} call. Otherwise, an error message is returned.
 }
 \seealso{
 \code{ggplot2::map_data()}
