@@ -10,6 +10,3 @@
 #' @importFrom grDevices windowsFonts
 #' @importFrom extrafont loadfonts
 NULL
-
-utils::globalVariables(c("."))
-

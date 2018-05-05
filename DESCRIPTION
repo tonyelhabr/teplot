@@ -4,7 +4,7 @@ Title: Tony's Personal Package for Plotting
 Version: 0.0.1.0000
 Author: Tony ElHabr <anthonyelhabr@gmail.com>
 Authors@R: person("Tony", "ElHabr", email = "anthonyelhabr@gmail.com", role = c("aut", "cre"))
-Description: A package for Tony's plotting functions.
+Description: This is a package with functions that Tony uses for plotting.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -14,7 +14,6 @@ Imports:
     ggplot2,
     maps,
     scales,
-    utils,
     grid,
     extrafont,
     grDevices
