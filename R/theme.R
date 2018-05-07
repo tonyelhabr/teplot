@@ -6,6 +6,7 @@
 #' for personal preferences.
 #' @param base_family,title.face,subtitle.face,caption.face,strip.text.face,axis.title.face,axis.text.face character.
 #' @param base_size,title.size,subtitle.size,caption.size,strip.text.size,axis.title.size,axis.text.size numeric.
+#' @param axis.title.just character. One of one of \code{'blmcrt'}
 #' @param legend.position gg element. Set to \code{"bottom"} by default
 #' (instead of "right").
 #' @param legend.title gg element. Set to \code{ggplot2::element_blank()} by default
@@ -14,7 +15,8 @@
 #' (instead of \code{ggplot2::element_line()}).
 #' @param ... dots. Additional parameters passed to \code{ggplot2::theme()}.
 #' @export
-#' @seealso \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/theme-ipsum.r}
+#' @seealso \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/theme-ipsum.r}.
+#' \url{\code{hrbrthemes::theme_ipsum()}}
 theme_te <-
   function(base_family = "Arial Narrow",
            base_size = 12,
@@ -33,9 +35,33 @@ theme_te <-
            legend.position = "bottom",
            legend.title = ggplot2::element_blank(),
            panel.grid.minor = ggplot2::element_blank(),
+           axis.title.just = "rt",
            ...) {
   ret <-
     ggplot2::theme_minimal(base_family = base_family, base_size = base_size)
+
+  # This part is is from hrbrthemes::theme_ipsum().
+  xj <-
+    switch(
+      tolower(substr(axis.title.just, 1, 1)),
+      b = 0,
+      l = 0,
+      m = 0.5,
+      c = 0.5,
+      r = 1,
+      t = 1
+    )
+
+  yj <-
+    switch(
+      tolower(substr(axis.title.just, 2, 2)),
+      b = 0,
+      l = 0,
+      m = 0.5,
+      c = 0.5,
+      r = 1,
+      t = 1
+    )
 
   ret <-
     ret +
@@ -74,14 +100,23 @@ theme_te <-
         ),
       axis.title.x =
         ggplot2::element_text(
+          hjust = xj,
           size = axis.title.size,
           face = axis.title.face
         ),
       axis.title.y =
         ggplot2::element_text(
+          hjust = yj,
           size = axis.title.size,
           face = axis.title.face
         ),
+      axis.title.y.right =
+        ggplot2::element_text(
+        hjust = yj,
+        angle = 90,
+        size = axis.title.size,
+        face = axis.title.face
+      ),
       axis.text.x =
         ggplot2::element_text(
           margin = ggplot2::margin(t = 0),
@@ -100,6 +135,34 @@ theme_te <-
     ret +
     ggplot2::theme(...)
   ret
+  }
+
+#' Update \code{ggplot2} font defaults for text geoms
+#'
+#' @description Updates \code{ggplot2::geom_label()} and \code{ggplot2::geom_text()} font defaults.
+#' @details None.
+#' @param family,face,size,color character.
+#' @export
+#' @source \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/theme-ipsum.r}.
+update_geom_font_defaults <-
+  function(family = "Arial Narrow",
+           face = "plain",
+           size = 3.5,
+           color = "#2b2b2b") {
+    ggplot2::update_geom_defaults("text",
+                                  list(
+                                    family = family,
+                                    face = face,
+                                    size = size,
+                                    color = color
+                                  ))
+    ggplot2::update_geom_defaults("label",
+                                  list(
+                                    family = family,
+                                    face = face,
+                                    size = size,
+                                    color = color
+                                  ))
   }
 
 

@@ -1,5 +1,5 @@
 
-context("maps")
+context("maps_tx")
 require("ggplot2")
 require("maps")
 
@@ -38,7 +38,7 @@ test_that("theme", {
 
   theme_te <- theme_te()
   expect_true(ggplot2::is.theme(theme_te))
-  expect_true(length(theme_te) == 59)
+  expect_true(length(theme_te) == 57)
 
   theme_te_dx <- theme_te_dx()
   expect_true(!is.null(theme_te_dx$panel.grid.major.x))
@@ -52,6 +52,6 @@ test_that("theme", {
   expect_equal(length(theme_te), length(theme_te_facet_dx) - 1)
 
   theme_map <- theme_map()
-  expect_equal(length(theme_te), length(theme_map))
+  expect_equal(length(theme_te), length(theme_map) - 1)
 
 })

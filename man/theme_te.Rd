@@ -14,7 +14,7 @@ theme_te(base_family = "Arial Narrow", base_size = 12, title.size = 16,
   axis.title.size = base_size, axis.title.face = subtitle.face,
   axis.text.size = base_size, axis.text.face = subtitle.face,
   legend.position = "bottom", legend.title = ggplot2::element_blank(),
-  panel.grid.minor = ggplot2::element_blank(), ...)
+  panel.grid.minor = ggplot2::element_blank(), axis.title.just = "rt", ...)
 
 theme_te_dx(...)
 
@@ -36,6 +36,8 @@ theme_te_facet_dx(...)
 \item{panel.grid.minor}{gg element. Set to \code{ggplot2::element_blank()} by default
 (instead of \code{ggplot2::element_line()}).}
 
+\item{axis.title.just}{character. One of one of \code{'blmcrt'}}
+
 \item{...}{dots. Additional parameters passed to \code{ggplot2::theme()}.}
 }
 \description{
@@ -46,5 +48,6 @@ Uses \code{ggplot2::theme_minimal()} as basis. Customized
 for personal preferences.
 }
 \seealso{
-\url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/theme-ipsum.r}
+\url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/theme-ipsum.r}.
+\url{\code{hrbrthemes::theme_ipsum()}}
 }
