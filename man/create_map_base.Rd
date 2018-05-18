@@ -5,15 +5,23 @@
 \alias{create_map_base_tx}
 \title{Create a \code{ggplot2} map for a single U.S. state}
 \usage{
-create_map_base(state = NULL, show_county = FALSE, ...)
+create_map_base(state = NULL, show_county = FALSE, fill = "white",
+  color = "black", ...)
 
-create_map_base_tx(state = "texas", show_county = FALSE, ...)
+create_map_base_tx(state = "texas", show_county = FALSE, fill = "white",
+  color = "black", ...)
 }
 \arguments{
 \item{state}{character for state name. May either be an abbreviation or full name and
 may be either lower-case or upper-case.}
 
 \item{show_county}{logical. Whether or not to show county lines for specified state.}
+
+\item{fill}{character. Either a hex code or a valid color name.
+Parameters passed directly to \code{ggplot2::geom_polygon()}.}
+
+\item{color}{character. Either a hex code or a valid color name.
+Parameters passed directly to \code{ggplot2::geom_polygon()}.}
 
 \item{...}{dots. Arguments passed to \code{theme_map()}}
 }

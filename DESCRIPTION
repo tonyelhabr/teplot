@@ -16,5 +16,5 @@ Imports:
     grid,
     extrafont,
     grDevices
-Suggests: testthat,covr,ggmap,sp,tmap
+Suggests: testthat,covr,ggmap,tmap
 Depends: R (>= 3.4.1)

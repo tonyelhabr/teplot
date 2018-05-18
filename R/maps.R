@@ -147,18 +147,25 @@ create_map_state <-
 #' @return gg.
 #' @export
 create_map_base <-
-  function(state = NULL, show_county = FALSE, ...) {
-    create_map_state(state = state, show_county = show_county) +
-      theme_map()
+  function(state = NULL, show_county = FALSE, fill = "white", color = "black", ...) {
+    create_map_state(
+      state = state,
+      show_county = show_county,
+      fill = fill,
+      color = color
+    ) +
+      theme_map(...)
   }
 
 #' @rdname create_map_base
 #' @export
 create_map_base_tx <-
-  function(state = "texas", show_county = FALSE, ...) {
+  function(state = "texas", show_county = FALSE, fill = "white", color = "black", ...) {
     create_map_base(
       state = state,
       show_county = show_county,
+      fill = fill,
+      color = color,
       ...
     )
   }
