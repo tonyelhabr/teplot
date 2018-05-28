@@ -9,10 +9,14 @@
 #' @param axis.title.just character. One of one of \code{'blmcrt'}
 #' @param legend.position gg element. Set to \code{"bottom"} by default
 #' (instead of "right").
-#' @param legend.title gg element. Set to \code{ggplot2::element_blank()} by default
+#' @param legend.title gg element. Set to a non-trivial default
 #' (instead of \code{ggplot2::element_text()}).
-#' @param panel.grid.minor gg element. Set to \code{ggplot2::element_blank()} by default
+#' @param panel.grid.minor gg element. Set to a non-trivial default
 #' (instead of \code{ggplot2::element_line()}).
+#' @param plot.background gg element. Set to a non-trivial default
+#' (instead of \code{ggplot2::element_blank()}).
+#' @param panel.spacing gg element. Set to a non-trivial default
+#' (instead of \code{5.5pt}).
 #' @param ... dots. Additional parameters passed to \code{ggplot2::theme()}.
 #' @export
 #' @seealso \url{https://github.com/hrbrmstr/hrbrthemes/blob/master/R/theme-ipsum.r}.
@@ -35,12 +39,43 @@ theme_te <-
            legend.position = "bottom",
            legend.title = ggplot2::element_blank(),
            panel.grid.minor = ggplot2::element_blank(),
+           plot.background = ggplot2::element_rect(color = "black", size = 1),
+           panel.spacing = grid::unit(1, "lines"),
            axis.title.just = "rt",
            ...) {
   ret <-
     ggplot2::theme_minimal(base_family = base_family, base_size = base_size)
 
+
+  ret <-
+    ret +
+    ggplot2::theme(
+      legend.position = legend.position
+    )
+
+  ret <-
+    ret +
+    ggplot2::theme(
+      legend.title = legend.title
+    )
+
+  ret <-
+    ret +
+    ggplot2::theme(
+      panel.grid.minor = panel.grid.minor
+    )
+
+
+  ret <-
+    ret + ggplot2::theme(
+      plot.background = plot.background
+    )
+
+  ret <- ret + theme(panel.spacing = panel.spacing)
+
   # This part is is from hrbrthemes::theme_ipsum().
+
+
   xj <-
     switch(
       tolower(substr(axis.title.just, 1, 1)),
@@ -61,14 +96,6 @@ theme_te <-
       c = 0.5,
       r = 1,
       t = 1
-    )
-
-  ret <-
-    ret +
-    ggplot2::theme(
-      legend.position = legend.position,
-      legend.title = legend.title,
-      panel.grid.minor = panel.grid.minor,
     )
 
   ret <-
@@ -196,7 +223,7 @@ theme_te_facet_dx <- function(...)
 #' @inheritParams theme_te
 #' @param panel.background.fill,panel.background.color,strip.background.fill,strip.background.color character.
 #' Passed directly to \code{ggplot2::theme()} parameters with similar names.
-#' @param ... dots. Passed directly to \code{ggplot2::theme_bw()}
+#' @param ... dots. Passed directly to \code{theme_te()}
 #' @rdname theme_te_map
 #' @seealso \url{http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html}.
 #' \url{https://gist.github.com/hrbrmstr/33baa3a79c5cfef0f6df}.
@@ -260,5 +287,38 @@ theme_map <-
 # #' @export
 # theme_te_map <- theme_map
 
+#' Custom theme for tile plot
+#'
+#' @description A custom \code{ggplot2} theme.
+#' @details Uses \code{theme_te()} as basis.
+#' @inheritParams theme_te
+#' @param panel.grid.major,panel.grid.minor,axis.text.x gg elements.
+#' Set to a non-trivial default
+#' Passed directly to \code{ggplot2::theme()} parameters with similar names.
+#' @param ... dots. Passed directly to \code{ggplot2::theme_bw()}
+#' @rdname theme_te_tile
+#' @export
+theme_te_tile <-
+  function(base_family = "Arial Narrow",
+           base_size = 12,
+           panel.grid.major = ggplot2::element_blank(),
+           panel.grid.minor = ggplot2::element_blank(),
+           axis.text.x = ggplot2::element_text(angle = 90),
+           ...) {
+    ret <-
+      theme_te(
+        base_family = base_family,
+        base_size = base_size,
+        ...
+      )
 
+    ret <-
+      ret %+replace%
+      ggplot2::theme(
+        panel.grid.major = panel.grid.major,
+        panel.grid.minor = panel.grid.minor,
+        axis.text.x = axis.text.x
+      )
+    ret
+  }
 

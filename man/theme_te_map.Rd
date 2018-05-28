@@ -17,7 +17,7 @@ theme_map(base_family = "Arial Narrow", base_size = 12,
 \item{panel.background.fill, panel.background.color, strip.background.fill, strip.background.color}{character.
 Passed directly to \code{ggplot2::theme()} parameters with similar names.}
 
-\item{...}{dots. Passed directly to \code{ggplot2::theme_bw()}}
+\item{...}{dots. Passed directly to \code{theme_te()}}
 }
 \description{
 A custom \code{ggplot2} theme.

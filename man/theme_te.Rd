@@ -14,7 +14,9 @@ theme_te(base_family = "Arial Narrow", base_size = 12, title.size = 16,
   axis.title.size = base_size, axis.title.face = subtitle.face,
   axis.text.size = base_size, axis.text.face = subtitle.face,
   legend.position = "bottom", legend.title = ggplot2::element_blank(),
-  panel.grid.minor = ggplot2::element_blank(), axis.title.just = "rt", ...)
+  panel.grid.minor = ggplot2::element_blank(),
+  plot.background = ggplot2::element_rect(color = "black", size = 1),
+  panel.spacing = grid::unit(1, "lines"), axis.title.just = "rt", ...)
 
 theme_te_dx(...)
 
@@ -30,11 +32,17 @@ theme_te_facet_dx(...)
 \item{legend.position}{gg element. Set to \code{"bottom"} by default
 (instead of "right").}
 
-\item{legend.title}{gg element. Set to \code{ggplot2::element_blank()} by default
+\item{legend.title}{gg element. Set to a non-trivial default
 (instead of \code{ggplot2::element_text()}).}
 
-\item{panel.grid.minor}{gg element. Set to \code{ggplot2::element_blank()} by default
+\item{panel.grid.minor}{gg element. Set to a non-trivial default
 (instead of \code{ggplot2::element_line()}).}
+
+\item{plot.background}{gg element. Set to a non-trivial default
+(instead of \code{ggplot2::element_blank()}).}
+
+\item{panel.spacing}{gg element. Set to a non-trivial default
+(instead of \code{5.5pt}).}
 
 \item{axis.title.just}{character. One of one of \code{'blmcrt'}}
 

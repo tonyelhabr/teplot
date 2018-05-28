@@ -51,3 +51,20 @@ scale_xy_pretty_percent <- function(...) {
   list(scale_x_pretty_percent(...), scale_y_pretty_percent(...))
 }
 
+#' Quick access to RColorBrewer palette 'Set1'.
+#'
+#' @description Use to incorporate RColorBrewer palette 'Set1' in \code{ggplot}s.
+#' @details This is a color palette that I use quite often (simply
+#' as an alternative to \code{ggplot2}'s default palette.
+#' @return gg object.
+#' @rdname scale_set1
+#' @export
+scale_color_set1 <- function() {
+  ggplot2::scale_color_brewer(palette = "Set1")
+}
+
+#' @rdname scale_set1
+#' @export
+scale_fill_set1 <- function() {
+  ggplot2::scale_fill_brewer(palette = "Set1")
+}
