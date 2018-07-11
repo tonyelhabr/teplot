@@ -1,7 +1,7 @@
 Package: teplot
 Type: Package
 Title: Tony's Personal Package for Plotting
-Version: 0.0.1.0000
+Version: 0.0.1.1
 Author: Tony ElHabr <anthonyelhabr@gmail.com>
 Authors@R: person("Tony", "ElHabr", email = "anthonyelhabr@gmail.com", role = c("aut", "cre"))
 Description: This is a package with functions that Tony uses for plotting.

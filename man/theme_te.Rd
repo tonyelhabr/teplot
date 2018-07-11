@@ -15,8 +15,8 @@ theme_te(base_family = "Arial Narrow", base_size = 12, title.size = 16,
   axis.text.size = base_size, axis.text.face = subtitle.face,
   legend.position = "bottom", legend.title = ggplot2::element_blank(),
   panel.grid.minor = ggplot2::element_blank(),
-  plot.background = ggplot2::element_rect(color = "black", size = 1),
-  panel.spacing = grid::unit(1, "lines"), axis.title.just = "rt", ...)
+  plot.background = ggplot2::element_blank(), panel.spacing = grid::unit(1,
+  "lines"), axis.title.just = "rt", ...)
 
 theme_te_dx(...)
 
@@ -38,8 +38,8 @@ theme_te_facet_dx(...)
 \item{panel.grid.minor}{gg element. Set to a non-trivial default
 (instead of \code{ggplot2::element_line()}).}
 
-\item{plot.background}{gg element. Set to a non-trivial default
-(instead of \code{ggplot2::element_blank()}).}
+\item{plot.background}{gg element. Was set to a non-trivial default
+(instead of \code{ggplot2::element_blank()}) in a previous version.}
 
 \item{panel.spacing}{gg element. Set to a non-trivial default
 (instead of \code{5.5pt}).}

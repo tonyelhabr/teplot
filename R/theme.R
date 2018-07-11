@@ -13,8 +13,8 @@
 #' (instead of \code{ggplot2::element_text()}).
 #' @param panel.grid.minor gg element. Set to a non-trivial default
 #' (instead of \code{ggplot2::element_line()}).
-#' @param plot.background gg element. Set to a non-trivial default
-#' (instead of \code{ggplot2::element_blank()}).
+#' @param plot.background gg element. Was set to a non-trivial default
+#' (instead of \code{ggplot2::element_blank()}) in a previous version.
 #' @param panel.spacing gg element. Set to a non-trivial default
 #' (instead of \code{5.5pt}).
 #' @param ... dots. Additional parameters passed to \code{ggplot2::theme()}.
@@ -39,7 +39,8 @@ theme_te <-
            legend.position = "bottom",
            legend.title = ggplot2::element_blank(),
            panel.grid.minor = ggplot2::element_blank(),
-           plot.background = ggplot2::element_rect(color = "black", size = 1),
+           # plot.background = ggplot2::element_rect(color = "black", size = 1),
+           plot.background = ggplot2::element_blank(),
            panel.spacing = grid::unit(1, "lines"),
            axis.title.just = "rt",
            ...) {
